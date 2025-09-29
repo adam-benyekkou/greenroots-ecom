@@ -1,0 +1,142 @@
+/* Complete Header */
+header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.75rem 1rem;
+	background-color: #fff;
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+	background-color: var(--pearl);
+	border-bottom: 1px solid var(--light-green);
+	margin-bottom: 2rem;
+}
+
+/* Burger menu, only for mobile */
+.navbar-mobile {
+	display: block;
+}
+
+/* Logo */
+.header-logo img {
+	width: auto;
+}
+
+/* Account + Cart */
+.header-account-cart {
+	display: flex;
+	gap: 1rem;
+}
+
+.header-account-cart img {
+	height: 2rem;
+	width: auto;
+	cursor: pointer;
+}
+
+.header-logo:hover,
+.header-account-cart a:hover {
+	background-color: transparent !important;
+}
+
+.navbar-desktop {
+	display: none;
+}
+
+/* Account menu container */
+.account-menu-container {
+	position: relative;
+	align-self: center;
+}
+
+.account-trigger {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+.account-trigger img {
+	height: 2rem;
+	width: auto;
+}
+
+.account-submenu {
+	position: absolute;
+	top: 100%;
+	right: 0;
+	background-color: var(--pearl);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	border-radius: 4px;
+	padding: 1rem;
+	min-width: 160px;
+	z-index: 999;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	list-style: none;
+	margin: 0;
+}
+
+.account-submenu li {
+	margin: 0;
+}
+
+.account-submenu li a,
+.account-submenu li button {
+	display: block;
+	padding: 0.5rem 0;
+	text-decoration: none;
+	color: var(--dark-green);
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: inherit;
+	font-family: inherit;
+	width: 100%;
+	text-align: left;
+	transition: color 0.2s ease;
+}
+
+.account-submenu li a:hover,
+.account-submenu li button:hover {
+	color: var(--dark-grey);
+}
+
+/* Responsive: tablet and desktop */
+@media (min-width: 768px) {
+	header {
+		padding: 1rem 2rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.navbar-mobile {
+		display: none;
+	}
+
+	.header-logo {
+		order: 1;
+	}
+
+	.navbar-desktop {
+		display: block;
+		order: 2;
+		display: flex;
+		align-items: center;
+		height: 100%;
+	}
+
+	.navbar-desktop ul {
+		box-shadow: none;
+		display: flex;
+		gap: 3rem;
+		list-style-type: none;
+	}
+
+	.header-account-cart {
+		order: 3;
+	}
+}

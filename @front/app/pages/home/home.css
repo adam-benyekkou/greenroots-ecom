@@ -1,0 +1,179 @@
+/* Mobile */
+.hero-section h1 {
+	text-transform: uppercase;
+	color: var(--dark-grey);
+}
+
+.hero-section h1 span {
+	text-transform: uppercase;
+	color: var(--dark-green);
+}
+
+.sub-hero-section-full-width {
+	display: none;
+}
+
+.link-button-mobile {
+	background-color: var(--dark-green);
+	color: white;
+	border: none;
+	border-radius: 5px;
+	padding: 0.6rem 1.2rem;
+	font-size: 1rem;
+	transition: filter 0.2s ease-in-out;
+	text-decoration: none;
+	display: inline-block;
+	text-align: center;
+	margin-top: 1rem;
+	align-self: center;
+}
+
+.trees-section {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 2rem 1rem;
+}
+
+.trees-section h2 {
+	text-align: left;
+	margin-bottom: 2rem;
+	color: var(--dark-green);
+}
+
+/* Container et grid pour les TreeCards */
+.tree-card-container {
+	width: 100%;
+	max-width: 1200px;
+}
+
+.tree-card-container ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: grid;
+	gap: 2rem;
+	justify-items: center;
+}
+
+/* Mobile - 1 colonne (vertical) */
+.tree-card-container ul {
+	grid-template-columns: 1fr;
+	gap: 1.5rem;
+}
+
+/* Tablet - 2 colonnes */
+@media (min-width: 768px) {
+	.tree-card-container ul {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 2.5rem;
+	}
+}
+
+/* Desktop - 3 colonnes */
+@media (min-width: 1024px) {
+	.tree-card-container ul {
+		grid-template-columns: repeat(3, 1fr);
+		gap: 3rem;
+	}
+}
+
+/* Large screens - 4 colonnes si nécessaire */
+@media (min-width: 1400px) {
+	.tree-card-container ul {
+		grid-template-columns: repeat(4, 1fr);
+		gap: 3.5rem;
+	}
+}
+
+.tree-card-container li {
+	width: 100%;
+	max-width: 320px;
+	display: flex;
+	justify-content: center;
+}
+
+/* Responsive: tablet and desktop */
+@media (min-width: 768px) {
+	.hero-section {
+		background-image: url("./images/homePage_forest.webp");
+		width: 100vw;
+		height: 60vh;
+		margin-top: -2rem;
+		position: relative;
+		left: 50%;
+		right: 50%;
+		transform: translateX(-50%);
+		background-size: cover;
+		background-position: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	.hero-section h1 {
+		background-color: var(--light-grey);
+		text-align: right;
+		margin: 5rem 1rem;
+		margin-left: auto;
+		padding: 1rem 1rem 3rem 2rem;
+		width: 50%;
+		align-items: flex-end;
+		border-radius: 10px;
+	}
+
+	.sub-hero-section-full-width {
+		display: block;
+		width: 100vw;
+		background-color: var(--grey);
+		position: relative;
+		left: 50%;
+		right: 50%;
+		transform: translateX(-50%);
+		margin-top: -2rem;
+	}
+
+	.container-sub-hero {
+		width: 80%;
+		margin: auto;
+		display: flex;
+		padding-top: 2rem;
+		padding-bottom: 2rem;
+	}
+
+	.container-sub-hero img {
+		width: 50%;
+		border-radius: 10px;
+	}
+
+	.sub-hero-text-content {
+		margin: auto;
+		margin-left: 3rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.link-button-mobile {
+		display: none;
+	}
+
+	.link-button-desktop {
+		background-color: var(--dark-green);
+		color: white;
+		border: none;
+		border-radius: 5px;
+		padding: 0.6rem 1.2rem;
+		font-size: 1rem;
+		transition: filter 0.2s ease-in-out;
+		margin-left: 0;
+		align-self: flex-start;
+		text-align: left;
+		text-decoration: none;
+		display: inline-block;
+	}
+
+	.trees-section {
+		padding: 3rem 2rem;
+	}
+}
