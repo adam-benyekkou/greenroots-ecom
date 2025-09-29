@@ -1,0 +1,113 @@
+.quantity-selector {
+	display: inline-flex;
+	align-items: center;
+	border-radius: 8px;
+	overflow: hidden;
+	border: 2px solid var(--light-green);
+	background: var(--pearl);
+	user-select: none;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	transition: all 0.2s ease;
+}
+
+.quantity-selector:hover {
+	border-color: var(--dark-green);
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.quantity-selector.disabled {
+	opacity: 0.6;
+	pointer-events: none;
+}
+
+/* Boutons */
+.quantity-btn {
+	border: none;
+	background: var(--light-green);
+	cursor: pointer;
+	width: 40px;
+	height: 40px;
+	font-size: 1.4rem;
+	font-weight: 600;
+	color: var(--dark-green);
+	transition: all 0.2s ease;
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.quantity-btn:hover:not(:disabled) {
+	background: var(--dark-green);
+	color: white;
+	transform: scale(1.05);
+}
+
+.quantity-btn:active:not(:disabled) {
+	transform: scale(0.95);
+}
+
+.quantity-btn:disabled {
+	cursor: not-allowed;
+	opacity: 0.4;
+	background: var(--light-grey);
+	color: var(--dark-grey);
+}
+
+.quantity-btn.decrement {
+	border-right: 1px solid rgba(69, 94, 70, 0.2);
+}
+
+.quantity-btn.increment {
+	border-left: 1px solid rgba(69, 94, 70, 0.2);
+}
+
+/* Input central */
+.quantity-input {
+	width: 50px;
+	height: 40px;
+	border: none;
+	background: white;
+	text-align: center;
+	font-weight: 600;
+	font-size: 1rem;
+	color: var(--dark-green);
+	outline: none;
+	-moz-appearance: textfield; /* Firefox */
+}
+
+/* Cacher les flèches sur Chrome/Safari */
+.quantity-input::-webkit-outer-spin-button,
+.quantity-input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.quantity-input:focus {
+	background: var(--light-yellow);
+}
+
+.quantity-input:disabled {
+	background: var(--light-grey);
+	color: var(--dark-grey);
+}
+
+
+@media (max-width: 480px) {
+	.quantity-selector {
+		border-radius: 6px;
+		max-width: 130px;
+	}
+
+	.quantity-btn {
+		width: 42px;
+		height: 42px;
+		font-size: 1.5rem;
+	}
+
+	.quantity-input {
+		width: 46px;
+		height: 42px;
+		font-size: 1.1rem;
+	}
+}

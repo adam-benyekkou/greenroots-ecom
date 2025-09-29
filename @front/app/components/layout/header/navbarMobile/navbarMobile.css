@@ -1,0 +1,191 @@
+.navbar-mobile {
+	color: var(--dark-green);
+}
+
+.navbar-mobile .toggle-btn {
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 0.5rem;
+}
+
+.navbar-mobile .menu-icon {
+	font-size: 2.5rem;
+	color: var(--dark-green);
+	transition: transform 0.3s ease;
+}
+
+nav.navbar-mobile {
+	position: relative;
+}
+
+/* Menu principal mobile */
+.mobile-menu {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	margin: 0;
+	padding: 1rem;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	border-radius: 4px;
+	z-index: 1000;
+	background: var(--pearl);
+	list-style: none;
+	min-width: 250px;
+}
+
+.mobile-menu > li {
+	margin: 0.8rem 0;
+}
+
+/* Liens principaux */
+.mobile-main-link {
+	display: block;
+	padding: 0.4rem 0;
+	color: var(--dark-green);
+	text-decoration: none;
+	font-weight: 500;
+	border-bottom: 1px solid var(--light-green);
+}
+
+.mobile-main-link:hover {
+	color: var(--dark-grey);
+}
+
+/* Container pour catalogue avec sous-menu */
+.mobile-submenu-container {
+	border-left: 3px solid var(--light-green);
+	padding-left: 0.5rem;
+}
+
+/* Details pour continents */
+.mobile-details {
+	margin-top: 0.5rem;
+}
+
+.mobile-summary {
+	list-style: none;
+	cursor: pointer;
+	padding: 0.3rem 0;
+	font-size: 0.9rem;
+	color: var(--dark-green);
+	font-weight: 500;
+}
+
+.mobile-summary::-webkit-details-marker {
+	display: none;
+}
+
+
+.navbar-mobile summary::after {
+	content: "▶"; /* triangle fermé */
+	transform: rotate(90deg);
+	display: inline-block;
+	margin-left: 0.5rem;
+	transition: transform 0.3s ease;
+	font-size: 0.8rem;
+}
+
+.navbar-mobile details[open] summary::after {
+	transform: rotate(0deg); /* triangle ouvert */
+
+}
+
+/* Sous-menu mobile */
+.mobile-submenu {
+	list-style: none;
+	margin: 0.5rem 0 0 0;
+	padding: 0;
+	background: rgba(255, 255, 255, 0.5);
+	border-radius: 4px;
+	padding: 0.5rem;
+}
+
+.mobile-submenu li {
+	margin: 0.3rem 0;
+}
+
+.mobile-submenu-link {
+	display: block;
+	padding: 0.3rem 0.5rem;
+	color: var(--dark-green);
+	text-decoration: none;
+	font-size: 0.9rem;
+	border-radius: 3px;
+	transition: all 0.2s ease;
+}
+
+.mobile-submenu-link:hover {
+	background: var(--light-green);
+	color: var(--dark-grey);
+}
+
+/* Couleurs continents pour mobile - URLs françaises */
+.mobile-submenu-link[href*="europe"] {
+	color: var(--europe-color);
+	border-left: 3px solid var(--europe-color);
+}
+
+.mobile-submenu-link[href*="asie"] {
+	color: var(--asia-color);
+	border-left: 3px solid var(--asia-color);
+}
+
+.mobile-submenu-link[href*="amerique-nord"] {
+	color: var(--north-america-color);
+	border-left: 3px solid var(--north-america-color);
+}
+
+.mobile-submenu-link[href*="amerique-sud"] {
+	color: var(--south-america-color);
+	border-left: 3px solid var(--south-america-color);
+}
+
+.mobile-submenu-link[href*="afrique"] {
+	color: var(--africa-color);
+	border-left: 3px solid var(--africa-color);
+}
+
+.mobile-submenu-link[href*="oceanie"] {
+	color: var(--oceania-color);
+	border-left: 3px solid var(--oceania-color);
+}
+
+/* "Voir tout" reste neutre */
+.mobile-submenu-link[href="/catalog"] {
+	color: var(--dark-green);
+	border-left: 3px solid var(--dark-green);
+	font-weight: 500;
+}
+
+/* Hover pour couleurs continents - URLs françaises */
+.mobile-submenu-link[href*="europe"]:hover {
+	color: var(--europe-hover);
+	background: rgba(34, 139, 34, 0.1);
+}
+
+.mobile-submenu-link[href*="asie"]:hover {
+	color: var(--asia-hover);
+	background: rgba(255, 99, 71, 0.1);
+}
+
+.mobile-submenu-link[href*="amerique-nord"]:hover {
+	color: var(--north-america-hover);
+	background: rgba(65, 105, 225, 0.1);
+}
+
+.mobile-submenu-link[href*="amerique-sud"]:hover {
+	color: var(--south-america-hover);
+	background: rgba(255, 140, 0, 0.1);
+}
+
+.mobile-submenu-link[href*="afrique"]:hover {
+	color: var(--africa-hover);
+	background: rgba(218, 165, 32, 0.1);
+}
+
+.mobile-submenu-link[href*="oceanie"]:hover {
+	color: var(--oceania-hover);
+	background: rgba(139, 0, 139, 0.1);
+}
