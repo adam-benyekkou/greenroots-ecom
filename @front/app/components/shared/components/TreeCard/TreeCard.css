@@ -1,0 +1,262 @@
+.tree-card {
+	background: white;
+	border-radius: 12px;
+	box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+	overflow: hidden;
+	transition: all 0.3s ease;
+	border-top: 4px solid var(--light-green);
+	position: relative;
+	width: 100%;
+	max-width: 320px; /* Fixed maximum width for cards */
+	margin: 0 auto; /* Center the card if container is wider */
+}
+
+.tree-card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+/* Image de l'arbre */
+.tree-card img {
+	width: 100%;
+	height: 200px;
+	object-fit: cover;
+	display: block;
+}
+
+/* Contenu texte */
+.tree-card-text-content {
+	padding: 1.2rem;
+}
+
+.tree-card-name-price {
+	margin-bottom: 1rem;
+}
+
+.tree-name-link {
+	text-decoration: none;
+	display: block;
+	transition: all 0.2s ease;
+	border-radius: 4px;
+	padding: 0.2rem;
+	margin: -0.2rem;
+}
+
+.tree-name-link:hover {
+	background: rgba(69, 94, 70, 0.05);
+	transform: translateY(-1px);
+}
+
+.tree-card-name-price h3 {
+	margin: 0 0 0.5rem 0;
+	font-size: 1.2rem;
+	color: var(--dark-green);
+	font-weight: 600;
+	transition: color 0.2s ease;
+}
+
+.tree-name-link:hover h3 {
+	color: #2d4016;
+}
+
+.tree-card-name-price p {
+	margin: 0;
+	font-size: 1.1rem;
+	color: var(--dark-green);
+	font-weight: 700;
+}
+
+/* Localisation et projet - Higher specificity */
+.tree-card .tree-card-text-content .tree-card-localization-project {
+	margin-bottom: 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.1rem !important; /* Force override */
+}
+
+.tree-card .tree-card-text-content .tree-card-localization,
+.tree-card .tree-card-text-content .tree-card-project {
+	display: flex;
+	align-items: center;
+	gap: 0.2rem !important; /* Force override */
+}
+
+.tree-card .tree-card-text-content .tree-card-localization img,
+.tree-card .tree-card-text-content .tree-card-project img {
+	width: 14px !important;
+	height: 14px !important;
+	opacity: 0.7;
+	flex-shrink: 0;
+	object-fit: contain;
+}
+
+.tree-card .tree-card-text-content .tree-card-localization p,
+.tree-card .tree-card-text-content .tree-card-project p {
+	margin: 0 !important;
+	font-size: 0.85rem !important;
+	color: var(--dark-grey);
+	flex: 1;
+	line-height: 1.2 !important;
+}
+
+/* Messages panier */
+.cart-success-message {
+	background: var(--light-green);
+	color: var(--dark-green);
+	padding: 0.5rem;
+	border-radius: 6px;
+	margin-bottom: 1rem;
+	font-size: 0.9rem;
+	font-weight: 500;
+	border-left: 4px solid var(--dark-green);
+}
+
+.cart-error-message {
+	background: var(--light-red);
+	color: #8b0000;
+	padding: 0.5rem;
+	border-radius: 6px;
+	margin-bottom: 1rem;
+	font-size: 0.9rem;
+	font-weight: 500;
+	border-left: 4px solid #8b0000;
+}
+
+/* Section ajout panier */
+.tree-card-add-cart {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	margin-top: 1rem;
+	padding-top: 1rem;
+	border-top: 1px solid var(--light-green);
+}
+
+/* Bouton d'ajout */
+.add-cart-button {
+	background: var(--dark-green);
+	color: white;
+	border: none;
+	border-radius: 8px;
+	padding: 0.7rem 1.4rem;
+	font-size: 0.95rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	flex: 1;
+	min-height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.add-cart-button:hover:enabled {
+	background: #2d4016;
+	transform: translateY(-1px);
+	box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.add-cart-button:active:enabled {
+	transform: translateY(0);
+}
+
+.add-cart-button:disabled {
+	background: var(--light-green);
+	color: var(--dark-grey);
+	cursor: not-allowed;
+	transform: none;
+	box-shadow: none;
+}
+
+/* COULEURS PAR CONTINENT - Sans effets de lumière */
+
+/* Europe - Vert */
+.tree-card[data-continent="Europe"] {
+	border-top-color: var(--europe-color);
+}
+
+.tree-card[data-continent="Europe"] .tree-card-name-price h3 {
+	color: var(--europe-color);
+}
+
+/* Asie - Rouge-orange */
+.tree-card[data-continent="Asia"] {
+	border-top-color: var(--asia-color);
+}
+
+.tree-card[data-continent="Asia"] .tree-card-name-price h3 {
+	color: var(--asia-color);
+}
+
+/* Amérique du Nord - Bleu royal */
+.tree-card[data-continent="North America"] {
+	border-top-color: var(--north-america-color);
+}
+
+.tree-card[data-continent="North America"] .tree-card-name-price h3 {
+	color: var(--north-america-color);
+}
+
+/* Amérique du Sud - Orange vif */
+.tree-card[data-continent="South America"] {
+	border-top-color: var(--south-america-color);
+}
+
+.tree-card[data-continent="South America"] .tree-card-name-price h3 {
+	color: var(--south-america-color);
+}
+
+/* Afrique - Or vif */
+.tree-card[data-continent="Africa"] {
+	border-top-color: var(--africa-color);
+}
+
+.tree-card[data-continent="Africa"] .tree-card-name-price h3 {
+	color: var(--africa-color);
+}
+
+/* Océanie - Violet */
+.tree-card[data-continent="Australia"] {
+	border-top-color: var(--australia-color);
+}
+
+.tree-card[data-continent="Australia"] .tree-card-name-price h3 {
+	color: var(--australia-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+	.tree-card-add-cart {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 0.8rem;
+	}
+
+	.add-cart-button {
+		padding: 0.8rem 1rem;
+		min-height: 48px; /* Standard tactile */
+	}
+}
+
+@media (max-width: 600px) and (min-width: 481px) {
+	.tree-card img {
+		height: 180px;
+	}
+}
+
+@media (max-width: 480px) {
+	.tree-card img {
+		height: 160px;
+	}
+
+	.tree-card-localization p,
+	.tree-card-project p {
+		font-size: 0.85rem;
+	}
+}
+
+@media (max-width: 320px) {
+	.tree-card img {
+		height: 140px;
+	}
+}
