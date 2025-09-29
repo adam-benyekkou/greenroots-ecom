@@ -1,0 +1,30 @@
+footer {
+    background-color: var(--dark-green);
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-div {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 2rem;
+}
+
+.footer-title {
+    color: white;
+}
+
+a {
+    color: white;
+    display: inline;
+    align-self: flex-end;
+    width: auto;
+}
+
+@media (min-width: 768px) {
+    footer {
+    flex-direction: row;
+    justify-content: right;
+    }
+}

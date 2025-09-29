@@ -1,0 +1,73 @@
+.navbar-desktop {
+	color: var(--dark-green);
+}
+
+.navlinks {
+	display: flex;
+	gap: 2rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	align-items: center;
+}
+
+/* Chaque li en ligne (par défaut block ok) */
+.navlinks > li {
+	position: relative;
+}
+
+/* Forcer details à inline-block pour ne pas casser la ligne */
+.navlinks li details {
+	display: inline-block;
+	position: relative;
+}
+
+/* Summary aussi en inline-block et pointer */
+.navlinks li details > summary {
+	list-style: none;
+	cursor: pointer;
+	display: inline-block;
+	margin: 0;
+	padding: 0.2rem 0.4rem;
+}
+
+/* Supprimer le marker par défaut */
+.navlinks li details > summary::-webkit-details-marker {
+	display: none;
+}
+
+/* Sous-menu en absolu, hidden par défaut */
+.navlinks li .submenu {
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	background: var(--pearl);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	border-radius: 4px;
+	padding: 0.5rem 1rem;
+	list-style: none;
+	min-width: 150px;
+	z-index: 1000;
+}
+
+/* Afficher sous-menu si details ouvert */
+details[open] > .submenu {
+	display: block;
+}
+
+.submenu li {
+	margin: 0.5rem 0;
+}
+
+.submenu li a {
+	text-decoration: none;
+}
+
+.submenu li a:hover {
+	color: var(--dark-grey);
+}
+
+.summary {
+	color: var(--dark-green);
+}

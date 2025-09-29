@@ -1,0 +1,66 @@
+.navbar-mobile {
+	color: var(--dark-green);
+}
+
+.navbar-mobile .toggle-btn {
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.navbar-mobile .menu-icon {
+	font-size: 2.5rem;
+	color: #333;
+	transition: transform 0.3s ease;
+	color: var(--dark-green);
+}
+
+nav.navbar-mobile {
+	position: relative; /* point de référence pour le menu */
+}
+
+nav.navbar-mobile > ul {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	margin: 0;
+	padding: 1rem 1rem;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	border-radius: 4px;
+	z-index: 100;
+	width: max-content;
+	background: var(--pearl);
+}
+
+/* Style des items */
+nav.navbar-mobile ul li {
+	margin: 0.5rem;
+}
+
+/* Retire le marker par défaut du summary */
+.navbar-mobile summary {
+	list-style: none;
+	cursor: pointer;
+}
+
+/* Optionnel : personnaliser le triangle */
+.navbar-mobile summary::-webkit-details-marker {
+	display: none;
+}
+
+.navbar-mobile summary::before {
+	content: "▶"; /* triangle fermé */
+	display: inline-block;
+	margin-right: 0.5rem;
+	transition: transform 0.3s ease;
+}
+
+.navbar-mobile details[open] summary::before {
+	transform: rotate(90deg); /* triangle ouvert */
+}
+
+/* Sous-menu */
+.navbar-mobile details ul {
+	margin-top: 0.5rem;
+	padding-left: 1.5rem;
+}

@@ -1,0 +1,35 @@
+{
+  "name": "greenroots",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up",
+    "dev:build": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build",
+    "dev:build:fresh": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml build --no-cache && docker-compose -f docker-compose.yml -f docker-compose.dev.yml up",
+    "dev:down": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml down",
+    "dev:logs": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml logs -f",
+    "prod": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up",
+    "prod:build": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build",
+    "prod:build:fresh": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml build --no-cache && docker-compose -f docker-compose.yml -f docker-compose.prod.yml up",
+    "prod:down": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml down",
+    "docker:clean": "docker-compose down -v --remove-orphans",
+    "docker:reset": "docker-compose down -v --remove-orphans && docker system prune -f",
+    "docker:rebuild": "docker-compose down && docker-compose build --no-cache",
+    "backend": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up backend database",
+    "backend:fresh": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml build --no-cache backend && docker-compose -f docker-compose.yml -f docker-compose.dev.yml up backend database",
+    "frontend": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up frontend",
+    "frontend:fresh": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml build --no-cache frontend && docker-compose -f docker-compose.yml -f docker-compose.dev.yml up frontend",
+    "database": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up database",
+    "logs:backend": "docker-compose logs -f backend",
+    "logs:frontend": "docker-compose logs -f frontend",
+    "logs:database": "docker-compose logs -f database",
+    "shell:backend": "docker-compose exec backend sh",
+    "shell:frontend": "docker-compose exec frontend sh",
+    "shell:database": "docker-compose exec database psql -U ${POSTGRES_USER:-admin} -d ${POSTGRES_DB:-greenroots}"
+  },
+  "devDependencies": {
+    "@jest/globals": "^30.0.5",
+    "concurrently": "^8.2.2",
+    "jest": "^30.0.5"
+  }
+}

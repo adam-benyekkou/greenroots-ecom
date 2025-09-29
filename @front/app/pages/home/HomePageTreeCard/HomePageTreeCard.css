@@ -1,0 +1,17 @@
+.add-cart-button {
+	background-color: var(--dark-green);
+	color: white;
+	border: none;
+	border-radius: 5px;
+	padding: 0.6rem 1.2rem;
+	font-size: 1rem;
+	transition: filter 0.2s ease-in-out;
+}
+
+.add-cart-button:hover:enabled {
+	filter: brightness(1.1);
+}
+
+.add-cart-button:disabled {
+	background-color: var(--light-green);
+}

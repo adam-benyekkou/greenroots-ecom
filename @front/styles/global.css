@@ -1,0 +1,65 @@
+/* Global CSS */
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --dark-green: #455E46;
+    --dark-grey: #212529;
+    --black: #000000;
+    --pearl: #FAF2E4;
+    --light-grey:  #F6F7F9;
+    --light-yellow: #F0DDB5;
+    --light-green: #C9CABA;
+    --light-red: #EEDED2;
+    --light-blue: #CCE7F0;
+    --light-brown: #EBEED2;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+main {
+    width: 100%;
+}
+
+/* Titles */
+
+h1 {
+	color: var(--dark-green);
+	font-size: 2rem;
+}
+
+h2 {
+	color: var(--dark-green);
+	font-size: 1.5rem;
+}
+
+h3 {
+	color: var(--dark-green);
+	font-size: 1.2rem;
+}
+
+/* Links */
+
+a {
+	text-decoration: none;
+	color: var(--dark-green);
+
+	&:hover {
+		background-color: var(--light-green);
+	}
+}
+
+li {
+	a {
+		text-decoration: none;
+		color: var(--dark-green);
+
+		&:hover {
+			color: var(--dark-grey);
+		}
+	}
+}
