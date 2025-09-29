@@ -1,0 +1,524 @@
+/* ===================================
+   PAGE PRODUIT ARBRE - ÉCOCONCEPTION
+   =================================== */
+
+/* Variables CSS pour cohérence et maintenance */
+:root {
+    --color-primary: #2d5016;
+    --color-primary-light: #4a7c59;
+    --color-secondary: #8fbc8f;
+    --color-accent: #f4a261;
+    --color-success: #2d5016;
+    --color-error: #d63384;
+    --color-warning: #f76707;
+
+    --color-text-primary: #1a1a1a;
+    --color-text-secondary: #666;
+    --color-text-muted: #888;
+
+    --color-bg-primary: #ffffff;
+    --color-bg-secondary: #f8f9fa;
+    --color-bg-accent: #f1f8e9;
+
+    --color-border: #e0e0e0;
+    --color-border-focus: var(--color-primary);
+
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.25s ease;
+    --transition-slow: 0.4s ease;
+}
+
+/* Reset et base */
+* {
+    box-sizing: border-box;
+}
+
+/* Page principale */
+.tree-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-md);
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    color: var(--color-text-primary);
+}
+
+/* ===================================
+   SECTION PRODUIT PRINCIPAL
+   =================================== */
+
+.tree-product {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-2xl);
+    margin-bottom: var(--spacing-2xl);
+    align-items: start;
+}
+
+/* Image du produit */
+.tree-image-container {
+    position: relative;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    background: var(--color-bg-secondary);
+    box-shadow: var(--shadow-md);
+}
+
+.tree-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.tree-image:hover {
+    transform: scale(1.02);
+}
+
+/* Détails du produit */
+.tree-details {
+    padding: var(--spacing-md) 0;
+}
+
+.tree-header-info {
+    margin-bottom: var(--spacing-lg);
+}
+
+.tree-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--color-primary); /* Couleur par défaut */
+    margin: 0 0 var(--spacing-md) 0;
+    line-height: 1.2;
+}
+
+/* Couleurs dynamiques selon le continent */
+.tree-title.continent-europe {
+    color: var(--europe-color, var(--color-primary));
+}
+
+.tree-title.continent-afrique {
+    color: var(--africa-color, var(--color-primary));
+}
+
+.tree-title.continent-asie {
+    color: var(--asia-color, var(--color-primary));
+}
+
+.tree-title.continent-amerique-du-sud {
+    color: var(--south-america-color, var(--color-primary));
+}
+
+.tree-title.continent-amérique-du-sud {
+    color: var(--south-america-color, var(--color-primary));
+}
+
+.tree-title.continent-amerique-du-nord {
+    color: var(--north-america-color, var(--color-primary));
+}
+
+.tree-title.continent-amérique-du-nord {
+    color: var(--north-america-color, var(--color-primary));
+}
+
+.tree-title.continent-australie {
+    color: var(--australia-color, var(--color-primary));
+}
+
+.tree-title.continent-default {
+    color: var(--color-primary);
+}
+
+.tree-meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.tree-location,
+.tree-project-ref {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+}
+
+.tree-location img,
+.tree-project-ref img {
+    width: 18px;
+    height: 18px;
+    opacity: 0.7;
+}
+
+/* Description */
+.tree-description {
+    margin-bottom: var(--spacing-lg);
+}
+
+.tree-description p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin: 0;
+    color: var(--color-text-secondary);
+}
+
+/* Prix */
+.tree-price {
+    display: flex;
+    align-items: baseline;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-md);
+    background: var(--color-bg-accent);
+    border-radius: var(--border-radius-md);
+    border-left: 4px solid var(--color-primary);
+}
+
+.price-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.price-unit {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+/* ===================================
+   MESSAGES DU PANIER
+   =================================== */
+
+.cart-message {
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    font-weight: 500;
+    margin-bottom: var(--spacing-lg);
+    animation: slideIn var(--transition-normal);
+}
+
+.cart-success {
+    background: #d4edda;
+    color: var(--color-success);
+    border: 1px solid #c3e6cb;
+}
+
+.cart-error {
+    background: #f8d7da;
+    color: var(--color-error);
+    border: 1px solid #f5c2c7;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===================================
+   SECTION D'ACHAT
+   =================================== */
+
+.tree-purchase {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-xl);
+    background: var(--color-bg-secondary);
+    border-radius: var(--border-radius-lg);
+    border: 2px solid var(--color-border);
+}
+
+.quantity-section {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.quantity-label {
+    font-weight: 600;
+    color: var(--color-text-primary);
+    font-size: 1rem;
+}
+
+/* Bouton principal */
+.add-to-cart-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-lg) var(--spacing-xl);
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius-md);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-sm);
+    min-height: 50px;
+}
+
+.add-to-cart-btn:hover:not(:disabled) {
+    background: var(--color-primary-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.add-to-cart-btn:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+.add-to-cart-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Spinner de chargement */
+.loading-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ===================================
+   SECTION PROJET
+   =================================== */
+
+.project-section {
+    background: linear-gradient(135deg, var(--color-bg-accent) 0%, var(--color-bg-secondary) 100%);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-2xl);
+    margin-top: var(--spacing-2xl);
+}
+
+.project-content {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--spacing-2xl);
+    align-items: center;
+}
+
+.project-title {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    margin: 0 0 var(--spacing-sm) 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.project-name {
+    font-size: 1.8rem;
+    color: var(--color-primary);
+    margin: 0 0 var(--spacing-lg) 0;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.project-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    margin: 0 0 var(--spacing-xl) 0;
+}
+
+/* Impact environnemental */
+.project-impact {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+}
+
+.impact-item {
+    text-align: center;
+    padding: var(--spacing-lg);
+    background: white;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-normal);
+}
+
+.impact-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.impact-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.impact-label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+/* Image du projet */
+.project-image-container {
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.project-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3/2;
+    object-fit: cover;
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+
+/* Tablette */
+@media (max-width: 1024px) {
+    .tree-page {
+        padding: var(--spacing-sm);
+    }
+
+    .tree-product {
+        gap: var(--spacing-xl);
+    }
+
+    .project-content {
+        gap: var(--spacing-xl);
+    }
+
+    .tree-title {
+        font-size: 2rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .tree-product {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+
+    .project-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .project-image-container {
+        order: -1;
+    }
+
+    .tree-title {
+        font-size: 1.75rem;
+    }
+
+    .tree-purchase {
+        padding: var(--spacing-lg);
+    }
+
+    .quantity-section {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .project-impact {
+        grid-template-columns: 1fr;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+/* Très petit écran */
+@media (max-width: 480px) {
+    .tree-page {
+        padding: var(--spacing-xs);
+    }
+
+    .project-section {
+        padding: var(--spacing-lg);
+    }
+
+    .tree-title {
+        font-size: 1.5rem;
+    }
+
+    .price-value {
+        font-size: 1.75rem;
+    }
+}
+
+/* ===================================
+   OPTIMISATIONS ACCESSIBILITÉ
+   =================================== */
+
+/* Focus visible pour navigation clavier */
+.add-to-cart-btn:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* Réduction des mouvements pour utilisateurs sensibles */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Mode sombre (si supporté par le système) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-text-primary: #f0f0f0;
+        --color-text-secondary: #b0b0b0;
+        --color-text-muted: #888;
+        --color-bg-primary: #1a1a1a;
+        --color-bg-secondary: #2d2d2d;
+        --color-bg-accent: #1e3a1e;
+        --color-border: #444;
+    }
+}
