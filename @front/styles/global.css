@@ -1,0 +1,87 @@
+/* Global CSS */
+
+* {
+	box-sizing: border-box;
+}
+
+:root {
+	--dark-green: #455e46;
+	--dark-grey: #212529;
+	--black: #000000;
+	--grey: #d9d9d9;
+	--pearl: #faf2e4;
+	--light-grey: #f6f7f9;
+	--light-yellow: #f0ddb5;
+	--light-green: #c9caba;
+	--light-red: #eeded2;
+	--light-blue: #cce7f0;
+	--light-brown: #ebeed2;
+
+	/* Couleurs continents */
+	--europe-color: #4D834C;
+	--europe-hover: #3a6239;
+	--asia-color: #D04838;
+	--asia-hover: #a63529;
+	--north-america-color: #0E2E3D;
+	--north-america-hover: #0a232e;
+	--south-america-color: #6B7B6A;
+	--south-america-hover: #545f53;
+	--africa-color: #A16C0D;
+	--africa-hover: #7e540a;
+	--australia-color: #603102;
+	--australia-hover: #4d2702;
+}
+
+body {
+	font-family: sans-serif;
+	background-color: var(--pearl);
+}
+
+main {
+	width: 90%;
+	margin: auto;
+}
+
+section {
+	margin-bottom: 2rem;
+}
+
+/* Titles */
+
+h1 {
+	color: var(--dark-green);
+	font-size: 2rem;
+}
+
+h2 {
+	color: var(--dark-green);
+	font-size: 1.5rem;
+	margin-bottom: 1.5rem;
+}
+
+h3 {
+	color: var(--dark-green);
+	font-size: 1.2rem;
+}
+
+/* Links */
+
+a {
+	text-decoration: none;
+	color: var(--dark-green);
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+li {
+	a {
+		text-decoration: none;
+		color: var(--dark-green);
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
