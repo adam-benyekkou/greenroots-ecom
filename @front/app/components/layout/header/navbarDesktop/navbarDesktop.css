@@ -1,0 +1,147 @@
+.navbar-desktop {
+	color: var(--dark-green);
+}
+
+.navlinks {
+	display: flex;
+	gap: 2rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	align-items: center;
+}
+
+/* Chaque li en ligne */
+.navlinks > li {
+	position: relative;
+}
+
+/* Container pour le menu avec sous-menu */
+.has-submenu {
+	position: relative;
+}
+
+/* Le bouton/lien principal */
+.menu-trigger {
+	display: inline-block;
+	padding: 0.2rem 0.4rem;
+	color: var(--dark-green);
+	text-decoration: none;
+	cursor: pointer;
+	border: none;
+	background: none;
+	font-size: inherit;
+	font-family: inherit;
+	transition: color 0.2s ease;
+}
+
+/* Hover pour le menu-trigger */
+.menu-trigger:hover {
+	color: var(--dark-grey);
+}
+
+/* Sous-menu caché par défaut - IMPORTANT: display: none */
+.submenu {
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	background: var(--pearl);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	border-radius: 4px;
+	padding: 0.5rem 1rem;
+	list-style: none;
+	min-width: 150px;
+	z-index: 1000;
+}
+
+/* Afficher le sous-menu UNIQUEMENT au survol du conteneur parent */
+.has-submenu:hover .submenu {
+	display: block;
+}
+
+/* S'assurer que le submenu reste caché par défaut */
+.has-submenu .submenu {
+	display: none;
+}
+
+.submenu li {
+	margin: 0.5rem 0;
+}
+
+.submenu li a {
+	text-decoration: none;
+	display: block;
+	padding: 0.2rem 0;
+	transition: color 0.2s ease;
+}
+
+/* COULEURS CONTINENTS - Adaptées aux URLs françaises */
+.submenu li a[href*="europe"] {
+	color: var(--europe-color);
+}
+
+.submenu li a[href*="asie"] {
+	color: var(--asia-color);
+}
+
+.submenu li a[href*="amerique-nord"] {
+	color: var(--north-america-color);
+}
+
+.submenu li a[href*="amerique-sud"] {
+	color: var(--south-america-color);
+}
+
+.submenu li a[href*="afrique"] {
+	color: var(--africa-color);
+}
+
+.submenu li a[href*="australie"] {
+	color: var(--australia-color);
+}
+
+/* Hover pour les couleurs continents */
+.submenu li a[href*="europe"]:hover {
+	color: var(--europe-hover);
+}
+
+.submenu li a[href*="asie"]:hover {
+	color: var(--asia-hover);
+}
+
+.submenu li a[href*="amerique-nord"]:hover {
+	color: var(--north-america-hover);
+}
+
+.submenu li a[href*="amerique-sud"]:hover {
+	color: var(--south-america-hover);
+}
+
+.submenu li a[href*="afrique"]:hover {
+	color: var(--africa-hover);
+}
+
+.submenu li a[href*="australie"]:hover {
+	color: var(--australia-hover);
+}
+
+/* "Voir tout" reste neutre */
+.submenu li a[href="/catalog"] {
+	color: var(--dark-green);
+}
+
+.submenu li a[href="/catalog"]:hover {
+	color: var(--dark-grey);
+}
+
+/* Style pour les liens normaux */
+.navlinks > li > a {
+	padding: 0.2rem 0.4rem;
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+
+.navlinks > li > a:hover {
+	color: var(--dark-grey);
+}
