@@ -1,0 +1,325 @@
+/* Container principal */
+.orders-container {
+    min-height: 100vh;
+    background-color: var(--pearl);
+    font-family: sans-serif;
+    padding: 2rem;
+}
+
+/* Modal blanche contenant tout */
+.orders-modal {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: white;
+    min-height: 700px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #D2B48C;
+}
+
+/* Main content avec fond pearl */
+.orders-main {
+    background-color: var(--pearl);
+    border-radius: 16px;
+    min-height: 700px;
+}
+
+/* Titre principal */
+.orders-title {
+    color: #2F4F2F;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 0;
+}
+
+/* Liste des commandes */
+.orders-list {
+    padding: 2rem 2.5rem;
+}
+
+/* Item de commande individuel - fond pearl */
+.order-item {
+    background-color: var(--pearl);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #D2B48C;
+    transition: all 0.2s ease;
+}
+
+.order-item:hover {
+    background-color: #F5F5DC;
+    border-color: #DAA520;
+}
+
+.order-item-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-item-info {
+    flex: 1;
+}
+
+.order-item-main {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.order-number {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #2F4F2F;
+}
+
+.order-date {
+    color: #5D4E37;
+}
+
+.order-total {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #2F4F2F;
+}
+
+/* Statuts des commandes */
+.order-status {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: white;
+}
+
+.status-livré {
+    background-color: #2D5016;
+}
+
+.status-en-cours {
+    background-color: #8B4513;
+}
+
+.status-en-préparation {
+    background-color: #556B2F;
+}
+
+.status-annulé {
+    background-color: #696969;
+}
+
+/* Bouton voir détail */
+.order-details-btn {
+    padding: 0.8rem 1.2rem;
+    border: 2px solid #2F4F2F;
+    border-radius: 20px;
+    background-color: #2F4F2F;
+    color: white;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.order-details-btn:hover {
+    background-color: #1C3A1C;
+    border-color: #1C3A1C;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.pagination-btn {
+    padding: 0.8rem 1.5rem;
+    border: 2px solid #2F4F2F;
+    border-radius: 20px;
+    background-color: white;
+    color: #2F4F2F;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.pagination-btn:hover {
+    background-color: #2F4F2F;
+    color: white;
+}
+
+/* Page de détail */
+.order-detail {
+    padding: 2rem 2.5rem;
+}
+
+.order-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.back-btn {
+    padding: 0.8rem 1.5rem;
+    border: 2px solid #2F4F2F;
+    border-radius: 20px;
+    background-color: white;
+    color: #2F4F2F;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+    background-color: #2F4F2F;
+    color: white;
+}
+
+/* Sections de détail */
+.order-section {
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    color: #2F4F2F;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.order-info-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid #D2B48C;
+}
+
+.order-info-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-date-label {
+    font-weight: 500;
+    color: #5D4E37;
+}
+
+.order-status-detail {
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    background-color: #2F4F2F;
+    color: white;
+    font-weight: 500;
+}
+
+/* Tableau des détails */
+.order-table {
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #D2B48C;
+}
+
+.table-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: var(--pearl);
+    font-weight: bold;
+    color: #2F4F2F;
+}
+
+.table-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid #D2B48C;
+    transition: background-color 0.2s ease;
+    color: #5D4E37;
+}
+
+.table-row:last-child {
+    border-bottom: none;
+}
+
+.table-row:hover {
+    background-color: var(--pearl);
+}
+
+.product-name {
+    font-weight: 500;
+}
+
+.item-total {
+    font-weight: 600;
+    color: #2F4F2F;
+}
+
+/* Total de commande */
+.order-total-section {
+    text-align: right;
+}
+
+.order-total-card {
+    display: inline-block;
+    background-color: #2F4F2F;
+    border-radius: 12px;
+    padding: 1.2rem 2rem;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .orders-container {
+        padding: 1rem;
+    }
+
+    .orders-list,
+    .order-detail {
+        padding: 1rem 1.5rem;
+    }
+
+    .order-item-main {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+
+    .order-item-content {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+    }
+
+    .order-detail-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .table-header,
+    .table-row {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .table-header span,
+    .table-row span {
+        padding: 0.25rem 0;
+    }
+}

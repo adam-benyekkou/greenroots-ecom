@@ -1,0 +1,112 @@
+.about-container {
+    background-color: var(--pearl);
+    display: flex;
+    flex-direction: column;
+}
+
+.about-section1, .about-section2 {
+    margin-bottom: 1rem;
+}
+
+.main-div {
+    margin: 2rem 1rem;
+}
+
+.about-image1, .about-image2 {
+    margin: 1rem auto;
+    border-radius: 15px;
+    aspect-ratio: 1 / 1;
+    width: 70%;
+    object-fit: cover;
+}
+
+.envelope {
+    display: none;
+}
+
+.about-title {
+    margin-bottom:1rem;
+}
+
+.contact {
+    background-color: var(--light-grey);
+    padding: 1rem;
+}
+
+.email {
+    color: var(--dark-green);
+    font-size: 1.2rem;
+}
+
+
+/* Responsive: tablet and desktop */
+@media (min-width: 768px) {
+
+    .about-container {
+
+        align-items: center;
+    }
+    .container-sections-1-2 {
+        max-width: 960px;
+    }
+
+    .about-section1, .about-section2 {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+        margin-bottom: 3rem;
+        clear: both;
+        padding: 2rem 2rem;
+    }
+
+    .about-section1 {
+        flex-direction: row; /* image à gauche, texte à droite */
+    }
+
+    .about-section2 {
+        flex-direction: row-reverse; /* image à droite, texte à gauche */
+    }
+
+    .contact {
+        display: flex;
+        gap: 3rem;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .contact-main-container p {
+        margin-right: 40%;
+    }
+    .envelope {
+        width : 9rem;
+        display: block;
+    }
+
+    .about-image1, .about-image2 {
+        max-width: 45%;
+        max-height: 20rem;
+        border-radius: 15px;
+        object-fit: cover;
+        aspect-ratio: 1 / 1;
+        float: none; /* désactive le float pour flexbox */
+        margin: 0;
+    }
+
+    .main-div {
+        width: 55%;
+        text-align: justify;
+        margin: 0;
+    }
+
+    .about-section3 {
+        width: 100vw;
+        box-sizing: border-box;
+        padding: 2rem 3rem;
+        background-color: var(--light-grey);
+        display: flex;
+        gap: 2rem;
+        color: var(--dark-green);
+    }
+
+
+}
