@@ -1,0 +1,15 @@
+.login-container {
+	margin: auto;
+	align-items: flex-start;
+	gap: 0.5rem;
+	width: 80%;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+
+/* Responsive: tablet and desktop */
+@media (min-width: 768px) {
+	.login-container {
+		width: 50%;
+	}
+}
