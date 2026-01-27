@@ -23,11 +23,11 @@ jobs:
       # Since we have workspaces or separate package.jsons:
       - name: Install Backend Deps
         working-directory: ./@back
-        run: npm ci
+        run: npm install
 
       - name: Install Frontend Deps
         working-directory: ./@front
-        run: npm ci
+        run: npm install
 
       # Run Lints
       # - name: Lint Backend

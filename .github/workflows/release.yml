@@ -27,7 +27,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
         # Failing this, we might need to skip or install just semantic-release
         # For now assuming root package.json has deps or we use npx
 
