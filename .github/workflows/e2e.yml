@@ -24,7 +24,9 @@ jobs:
         npm install --prefix @back
 
     - name: Install Playwright Browsers
-      run: npx playwright install --with-deps --prefix @front
+      working-directory: ./@front
+      run: npx playwright install --with-deps
 
     - name: Run Playwright tests
-      run: npm run test:e2e --prefix @front
+      working-directory: ./@front
+      run: npm run test:e2e
