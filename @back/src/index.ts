@@ -14,13 +14,7 @@ setupSecurity(app);
 app.use('/api/payments/webhook', express.raw({ type: 'application/json' }));
 
 // JSON parsing for all other routes
-app.use((req, res, next) => {
-    if (req.originalUrl === '/api/payments/webhook') {
-        next();
-    } else {
-        express.json({ limit: '10mb' })(req, res, next);
-    }
-});
+app.use(express.json({ limit: '10mb' }));
 
 app.use(express.urlencoded({ extended: true }));
 

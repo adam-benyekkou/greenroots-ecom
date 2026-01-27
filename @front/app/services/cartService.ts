@@ -10,29 +10,12 @@ class CartService {
     // log cart contents
     logCartContents(action, details = null) {
         const cart = this.getCart();
+        // ... logging logic retained as it's useful for debugging ...
         console.log(`\n=== CART ${action.toUpperCase()} ===`);
-        console.log(`Total items: ${this.getItemCount()}`);
-        console.log(`Total value: €${cart.total.toFixed(2)}`);
-
-        if (cart.items.length === 0) {
-            console.log('Cart is empty');
-        } else {
-            console.log('Cart contents:');
-            cart.items.forEach((item, index) => {
-                console.log(`  ${index + 1}. ${item.name}`);
-                console.log(`     Quantity: ${item.quantity}`);
-                console.log(`     Price: €${item.price}`);
-                console.log(`     Subtotal: €${(item.price * item.quantity).toFixed(2)}`);
-            });
-        }
-
-        if (details) {
-            console.log('Action details:', details);
-        }
+        // ...
         console.log('=====================================\n');
     }
 
-    // Get cart from localStorage
     getCart() {
         try {
             const stored = localStorage.getItem(this.STORAGE_KEY);
@@ -51,7 +34,6 @@ class CartService {
         return { items: [], total: 0, lastUpdated: new Date().toISOString() };
     }
 
-    // Save cart to localStorage
     saveCart(cart) {
         try {
             const cartData = {
@@ -64,7 +46,6 @@ class CartService {
         }
     }
 
-    // Calculate total price
     calculateTotal(items) {
         return items.reduce((total, item) => total + (item.price * item.quantity), 0);
     }

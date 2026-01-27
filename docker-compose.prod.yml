@@ -12,6 +12,7 @@ services:
       - ./@back/database/migration/create-tables.sql:/docker-entrypoint-initdb.d/01-create-tables.sql
       - ./@back/database/seeders/prod-data.sql:/docker-entrypoint-initdb.d/02-prod-data.sql
   backend:
+    image: adambenyekkou/greenroots-backend:latest
     build:
       context: ./@back
     ports:
@@ -38,6 +39,7 @@ services:
       - EMAIL_FROM_NAME=${EMAIL_FROM_NAME}
 
   frontend:
+    image: adambenyekkou/greenroots-frontend:latest
     build:
       context: ./@front
       args:

@@ -11,7 +11,9 @@
 		"lint": "biome lint .",
 		"format": "biome format --write .",
 		"check": "biome check --apply .",
-		"type-check": "react-router typegen && tsc"
+		"type-check": "react-router typegen && tsc",
+		"test:unit": "set NODE_OPTIONS=--experimental-vm-modules && jest",
+		"test:unit:ci": "NODE_OPTIONS='--experimental-vm-modules' jest"
 	},
 	"dependencies": {
 		"@react-router/node": "^7.7.1",

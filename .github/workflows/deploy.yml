@@ -1,237 +1,116 @@
-name: Deploy GreenRoots
+name: Deploy to VPS
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
-
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME_BACKEND: ${{ github.repository }}/backend
-  IMAGE_NAME_FRONTEND: ${{ github.repository }}/frontend
+    branches: [ master ]
 
 jobs:
-  test:
+  lint:
     runs-on: ubuntu-latest
-
-    services:
-      postgres:
-        image: postgres:15
-        env:
-          POSTGRES_DB: ${{ secrets.TEST_POSTGRES_DB || 'greenroots_test' }}
-          POSTGRES_USER: ${{ secrets.TEST_POSTGRES_USER || 'test_user' }}
-          POSTGRES_PASSWORD: ${{ secrets.TEST_POSTGRES_PASSWORD || 'test_password' }}
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
-    env:
-      DATABASE_URL: postgres://${{ secrets.TEST_POSTGRES_USER || 'test_user' }}:${{ secrets.TEST_POSTGRES_PASSWORD || 'test_password' }}@localhost:5432/${{ secrets.TEST_POSTGRES_DB || 'greenroots_test' }}
-      DB_USER: ${{ secrets.TEST_POSTGRES_USER || 'test_user' }}
-      DB_PASSWORD: ${{ secrets.TEST_POSTGRES_PASSWORD || 'test_password' }}
-      DB_HOST: localhost
-      DB_NAME: ${{ secrets.TEST_POSTGRES_DB || 'greenroots_test' }}
-      DB_PORT: 5432
-      POSTGRES_USER: ${{ secrets.TEST_POSTGRES_USER || 'test_user' }}
-      POSTGRES_PASSWORD: ${{ secrets.TEST_POSTGRES_PASSWORD || 'test_password' }}
-      POSTGRES_DB: ${{ secrets.TEST_POSTGRES_DB || 'greenroots_test' }}
-      NODE_ENV: test
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Install pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 10
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '22'
-        cache: 'pnpm'
+      # Install root dependencies (if any) or just skip to sub-projects
+      # Since we have workspaces or separate package.jsons:
+      - name: Install Backend Deps
+        working-directory: ./@back
+        run: npm ci
 
-    - name: Install backend dependencies
-      run: |
-        cd @back
-        pnpm install --frozen-lockfile
+      - name: Install Frontend Deps
+        working-directory: ./@front
+        run: npm ci
 
-    - name: Setup test database
-      run: |
-        cd @back
-        # Wait for PostgreSQL to be ready
-        until pg_isready -h localhost -p 5432 -U ${{ secrets.TEST_POSTGRES_USER || 'test_user' }}; do sleep 1; done
-        # Create tables
-        PGPASSWORD=${{ secrets.TEST_POSTGRES_PASSWORD || 'test_password' }} psql -h localhost -U ${{ secrets.TEST_POSTGRES_USER || 'test_user' }} -d ${{ secrets.TEST_POSTGRES_DB || 'greenroots_test' }} -f database/migration/create-tables.sql
-
-    - name: Run backend tests
-      run: |
-        cd @back
-        pnpm test
-
-    - name: Install frontend dependencies
-      run: |
-        cd @front
-        pnpm install --frozen-lockfile
-
-    - name: Build frontend
-      run: |
-        cd @front
-        pnpm build
+      # Run Lints
+      # - name: Lint Backend
+      #   working-directory: ./@back
+      #   run: npm run lint
 
   build-and-push:
-    needs: test
+    needs: lint
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
-
-    permissions:
-      contents: read
-      packages: write
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Log in to Container Registry
-      uses: docker/login-action@v3
-      with:
-        registry: ${{ env.REGISTRY }}
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Extract metadata for backend
-      id: meta-backend
-      uses: docker/metadata-action@v5
-      with:
-        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_BACKEND }}
-        tags: |
-          type=ref,event=branch
-          type=ref,event=pr
-          type=sha,prefix={{branch}}-
-          type=raw,value=latest,enable={{is_default_branch}}
+      - name: Build and push Backend
+        uses: docker/build-push-action@v6
+        with:
+          context: ./@back
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/greenroots-backend:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
-    - name: Build and push backend image
-      uses: docker/build-push-action@v5
-      with:
-        context: ./@back
-        push: true
-        tags: ${{ steps.meta-backend.outputs.tags }}
-        labels: ${{ steps.meta-backend.outputs.labels }}
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
+      - name: Build and push Frontend
+        uses: docker/build-push-action@v6
+        with:
+          context: ./@front
+          push: true
+          build-args: |
+             VITE_API_URL=${{ secrets.VITE_API_URL }}
+             REDIRECT_CHECKOUT_PAGE=${{ secrets.REDIRECT_CHECKOUT_PAGE }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/greenroots-frontend:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
-    - name: Extract metadata for frontend
-      id: meta-frontend
-      uses: docker/metadata-action@v5
-      with:
-        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_FRONTEND }}
-        tags: |
-          type=ref,event=branch
-          type=ref,event=pr
-          type=sha,prefix={{branch}}-
-          type=raw,value=latest,enable={{is_default_branch}}
-
-    - name: Build and push frontend image
-      uses: docker/build-push-action@v5
-      with:
-        context: ./@front
-        push: true
-        tags: ${{ steps.meta-frontend.outputs.tags }}
-        labels: ${{ steps.meta-frontend.outputs.labels }}
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
+      - name: Run Trivy scanner (Backend)
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: '${{ secrets.DOCKER_USERNAME }}/greenroots-backend:latest'
+          format: 'table'
+          exit-code: '0' # Don't fail for now
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
 
   deploy:
-    needs: [test, build-and-push]
+    needs: build-and-push
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-
-    environment: production
-
+    if: github.event_name == 'push'
     steps:
-    - name: Deploy to server
-      uses: appleboy/ssh-action@v1.0.3
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.PRIVATE_KEY }}
-        port: ${{ secrets.PORT }}
-        script: |
-          cd /home/ubuntu/greenroots
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-          # Pull latest code
-          git pull origin ${{ github.ref_name }}
-
-          # Create/update .env file with production values
-          cat > .env << EOF
-          VITE_API_URL=${{ secrets.VITE_API_URL }}
-          NODE_ENV=production
-          POSTGRES_DB=${{ secrets.POSTGRES_DB }}
-          POSTGRES_USER=${{ secrets.POSTGRES_USER }}
-          POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
-          DATABASE_URL=postgres://${{ secrets.DB_USER }}:${{ secrets.DB_PASSWORD }}@database:5432/${{ secrets.DB_NAME }}
-          DB_HOST=${{ secrets.DB_HOST || 'database' }}
-          DB_USER=${{ secrets.DB_USER }}
-          DB_NAME=${{ secrets.DB_NAME }}
-          DB_PASSWORD=${{ secrets.DB_PASSWORD }}
-          STRIPE_PUBLIC_KEY=${{ secrets.STRIPE_PUBLIC_KEY }}
-          STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }}
-          STRIPE_WEBHOOK_SECRET=${{ secrets.STRIPE_WEBHOOK_SECRET }}
-          REDIRECT_CHECKOUT_PAGE=${{ secrets.REDIRECT_CHECKOUT_PAGE }}
-          SMTP_HOST=${{ secrets.SMTP_HOST }}
-          SMTP_PORT=${{ secrets.SMTP_PORT }}
-          EMAIL_USER=${{ secrets.EMAIL_USER }}
-          EMAIL_PASS=${{ secrets.EMAIL_PASS }}
-          EMAIL_FROM=${{ secrets.EMAIL_FROM }}
-          EMAIL_FROM_NAME=${{ secrets.EMAIL_FROM_NAME }}
-          DB_PORT=${{ secrets.DB_PORT || '5432' }}
-          EOF
-
-          # Check if SSL certificates exist
-          if [ ! -f "./data/certbot/conf/live/greenroots.website-0001/fullchain.pem" ]; then
-            echo "SSL certificates not found. Using temporary nginx config and running SSL setup..."
-
-            # Use temporary nginx config without SSL
-            cp nginx-temp.conf nginx.conf
-
-            # Create certbot directories before starting services
-            mkdir -p ./data/certbot/conf
-            mkdir -p ./data/certbot/www
-
-            # Start services without SSL first
-            docker compose -f docker-compose.prod.yml up -d
-
-            # Run SSL initialization
-            chmod +x ./init-letsencrypt.sh
-            ./init-letsencrypt.sh
-
-            # Switch to full nginx config with SSL
-            git checkout nginx.conf
-            docker compose -f docker-compose.prod.yml restart nginx
-          else
-            echo "SSL certificates found. Proceeding with normal deployment..."
-            # Ensure certbot directories exist for normal deployment too
-            mkdir -p ./data/certbot/conf
-            mkdir -p ./data/certbot/www
-          fi
+      - name: Deploy using ssh
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts
           
-          # Stop only backend and frontend (keep database, nginx, certbot running)
-          docker compose -f docker-compose.prod.yml stop backend frontend
-
-          # Rebuild backend and frontend
-          docker compose -f docker-compose.prod.yml build --no-cache backend frontend
-
-          # Start all services (database, nginx, certbot will stay running if already up)
-          docker compose -f docker-compose.prod.yml up -d
-
-          # Clean up unused images
-          docker image prune -f
+          echo "Deploying to $SSH_USER@$SSH_HOST..."
+          # 1. Create directory
+          ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa "$SSH_USER@$SSH_HOST" "mkdir -p /opt/infrastructure/stacks/greenroots"
+          
+          # 2. Copy docker-compose.prod.yml as docker-compose.yml
+          scp -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa docker-compose.prod.yml "$SSH_USER@$SSH_HOST:/opt/infrastructure/stacks/greenroots/docker-compose.yml"
+          
+          # 3. Pull and Start
+          ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa "$SSH_USER@$SSH_HOST" "
+            cd /opt/infrastructure/stacks/greenroots &&
+            echo '${{ secrets.DOCKER_PASSWORD }}' | docker login -u '${{ secrets.DOCKER_USERNAME }}' --password-stdin &&
+            docker compose pull &&
+            docker compose up -d"

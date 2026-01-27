@@ -1,6 +1,6 @@
 BEGIN;
 
--- Suppression des tables existantes
+-- Drop existing tables
 DROP TABLE IF EXISTS payment_transaction;
 DROP TABLE IF EXISTS planted_tree;
 DROP TABLE IF EXISTS order_line;
@@ -120,7 +120,7 @@ CREATE TABLE payment_transaction (
         ON DELETE RESTRICT
 );
 
--- Ajout des tables nécessaires à la gestion des rôles et des token password + email - WIP
+-- Add tables for role management and password/email tokens - WIP
 CREATE TABLE password_reset_tokens (
                                        email TEXT PRIMARY KEY,
                                        token TEXT NOT NULL,
@@ -134,7 +134,7 @@ CREATE TABLE email_verification_tokens (
                                            created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
 
--- Création des index pour améliorer les performances
+-- Create indexes to improve performance
 CREATE INDEX idx_project_localization ON project(localization_id);
 CREATE INDEX idx_project_tree_tree ON project_tree(tree_id);
 CREATE INDEX idx_order_user ON "order"(user_id);

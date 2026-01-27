@@ -1,81 +1,129 @@
 # GreenRoots
 
-# Commandes Docker
+## Architecture
 
-Ce projet utilise Docker Compose avec différentes configurations pour les environnements de développement et de production.
-
-## Environnement de développement
-
-### Commandes principales
-```bash
-npm run dev                    # Lance l'application en mode développement
-npm run dev:build             # Lance l'application en reconstruisant les images
-npm run dev:build:fresh       # Reconstruit complètement (sans cache) et lance
-npm run dev:down              # Arrête tous les services de développement
-npm run dev:logs              # Affiche les logs en temps réel
+```mermaid
+graph TD
+    User[User] -->|HTTPS| Nginx[Nginx Reverse Proxy]
+    Nginx -->|Port 3000| Front[Frontend @front (React Router/Vite)]
+    Nginx -->|Port 3001| Back[Backend @back (Express)]
+    Front -->|API Calls| Back
+    Back -->|Queries| DB[(PostgreSQL)]
+    Back -->|Payments| Stripe[Stripe API]
+    Back -->|Emails| SMTP[SMTP Server]
 ```
 
-## Environnement de production
+# CI/CD & Testing
 
-### Commandes principales
-```bash
-npm run prod                  # Lance l'application en mode production
-npm run prod:build           # Lance l'application en reconstruisant les images
-npm run prod:build:fresh     # Reconstruit complètement (sans cache) et lance
-npm run prod:down            # Arrête tous les services de production
-```
+## Workflows
 
-## Gestion Docker
+- **PR Checks**: Runs linting, type-checking, and unit tests on every Pull Request.
+- **E2E Tests**: Runs Playwright end-to-end tests nightly and on `master` pushes.
+- **Release**: Automates versioning and release notes creation on `master` pushes.
+- **Deploy**: Deploys to the production VPS on `master` pushes.
 
-### Nettoyage et maintenance
-```bash
-npm run docker:clean         # Arrête et supprime les conteneurs, volumes et réseaux
-npm run docker:reset         # Nettoyage complet + suppression des images inutilisées
-npm run docker:rebuild       # Arrête et reconstruit toutes les images sans cache
-```
-
-## Services individuels
+## Running Tests Locally
 
 ### Backend
+
 ```bash
-npm run backend              # Lance uniquement le backend et la base de données
-npm run backend:fresh        # Reconstruit et lance le backend avec la base de données
+cd @back
+npm test                # Run unit/integration tests
 ```
 
 ### Frontend
+
 ```bash
-npm run frontend             # Lance uniquement le frontend
-npm run frontend:fresh       # Reconstruit et lance le frontend
+cd @front
+npm run test:unit       # Run unit tests (Windows)
+npm run test:e2e        # Run e2e tests
 ```
 
-### Base de données
+# Docker Commands
+
+This project uses Docker Compose with different configurations for development and production environments.
+
+## Development Environment
+
+### Main Commands
+
 ```bash
-npm run database             # Lance uniquement la base de données
+npm run dev                    # Start application in development mode
+npm run dev:build             # Start application and rebuild images
+npm run dev:build:fresh       # Rebuild completely (no cache) and start
+npm run dev:down              # Stop all development services
+npm run dev:logs              # Show real-time logs
 ```
 
-## Logs des services
+## Production Environment
 
-### Consultation des logs
+### Main Commands
+
 ```bash
-npm run logs:backend         # Affiche les logs du backend en temps réel
-npm run logs:frontend        # Affiche les logs du frontend en temps réel
-npm run logs:database        # Affiche les logs de la base de données en temps réel
+npm run prod                  # Start application in production mode
+npm run prod:build           # Start application and rebuild images
+npm run prod:build:fresh     # Rebuild completely (no cache) and start
+npm run prod:down            # Stop all production services
 ```
 
-## Accès aux conteneurs
+## Docker Management
 
-### Shell interactif
+### Cleanup and Maintenance
+
 ```bash
-npm run shell:backend        # Ouvre un shell dans le conteneur backend
-npm run shell:frontend       # Ouvre un shell dans le conteneur frontend
-npm run shell:database       # Ouvre un shell dans le conteneur de base de données
+npm run docker:clean         # Stop and remove containers, volumes, and networks
+npm run docker:reset         # Complete cleanup + remove unused images
+npm run docker:rebuild       # Stop and rebuild all images without cache
 ```
 
-## Structure des fichiers Docker Compose
+## Individual Services
 
-Le projet utilise une approche multi-fichiers :
-- `docker-compose.yml` : Configuration de base partagée
-- `docker-compose.dev.yml` : Surcharges pour le développement
-- `docker-compose.prod.yml` : Surcharges pour la production
+### Backend
 
-Les commandes combinent automatiquement ces fichiers selon l'environnement ciblé.
+```bash
+npm run backend              # Start only backend and database
+npm run backend:fresh        # Rebuild and start backend with database
+```
+
+### Frontend
+
+```bash
+npm run frontend             # Start only frontend
+npm run frontend:fresh       # Rebuild and start frontend
+```
+
+### Database
+
+```bash
+npm run database             # Start only database
+```
+
+## Service Logs
+
+### Viewing Logs
+
+```bash
+npm run logs:backend         # Show real-time backend logs
+npm run logs:frontend        # Show real-time frontend logs
+npm run logs:database        # Show real-time database logs
+```
+
+## Container Access
+
+### Interactive Shell
+
+```bash
+npm run shell:backend        # Open shell in backend container
+npm run shell:frontend       # Open shell in frontend container
+npm run shell:database       # Open shell in database container
+```
+
+## Docker Compose File Structure
+
+The project uses a multi-file approach:
+
+- `docker-compose.yml`: Shared base configuration
+- `docker-compose.dev.yml`: Overrides for development
+- `docker-compose.prod.yml`: Overrides for production
+
+Commands automatically combine these files based on the targeted environment.

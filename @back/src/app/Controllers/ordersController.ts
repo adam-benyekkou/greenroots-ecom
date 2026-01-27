@@ -74,41 +74,41 @@ const ordersController = {
 				status: OrderStatus.PENDING,
 			});
 
-      const orderLinesData = [];
-      const line_items = [];
+			const orderLinesData = [];
+			const line_items = [];
 
-      for (const item of items) {
-        const tree = await treeModel.findByIdForCheckout(item.tree_id);
+			for (const item of items) {
+				const tree = await treeModel.findByIdForCheckout(item.tree_id);
 
-        if (!tree || typeof tree === undefined) {
-          return res.status(404).json({
-            error: `Tree with ID ${item.tree_id} not found`,
-          });
-        }
+				if (!tree || typeof tree === undefined) {
+					return res.status(404).json({
+						error: `Tree with ID ${item.tree_id} not found`,
+					});
+				}
 
-        orderLinesData.push({
-          tree_id: item.tree_id,
-          order_id: order.order_id!,
-          quantity: item.quantity,
-          price: item.price,
-        });
+				orderLinesData.push({
+					tree_id: item.tree_id,
+					order_id: order.order_id!,
+					quantity: item.quantity,
+					price: item.price,
+				});
 
-        line_items.push({
-          price: tree.price_id,
-          quantity: item.quantity,
-        });
-      }
+				line_items.push({
+					price: tree.price_id,
+					quantity: item.quantity,
+				});
+			}
 
 			await orderLineModel.createMany(orderLinesData);
 
 			const session = await stripe.checkout.sessions.create({
 				line_items,
 				mode: "payment",
-        payment_intent_data: {
-          metadata: {
-            order_id: order.order_id!
-          }
-        },
+				payment_intent_data: {
+					metadata: {
+						order_id: order.order_id!
+					}
+				},
 				success_url: `${redirectCheckoutPage}?success=true`,
 				cancel_url: `${redirectCheckoutPage}?canceled=true`,
 			});
@@ -119,7 +119,7 @@ const ordersController = {
 				});
 			}
 
-      res.status(201).json({ urlSession: session.url });
+			res.status(201).json({ urlSession: session.url });
 		} catch (error) {
 			console.error("Error creating order:", error);
 			res.status(500).json({
@@ -164,46 +164,46 @@ const ordersController = {
 		}
 	},
 
-    // Lister les commandes de l'utilisateur connecté avec pagination
-    async getUserOrders(req: Request, res: Response) {
-        try {
-            const { user } = req;
+	// List orders for the connected user with pagination
+	async getUserOrders(req: Request, res: Response) {
+		try {
+			const { user } = req;
 
-            if (!user || !user.user_id) {
-                return res.status(401).json({
-                    error: 'User authentication required'
-                });
-            }
+			if (!user || !user.user_id) {
+				return res.status(401).json({
+					error: 'User authentication required'
+				});
+			}
 
-            // Récupération des paramètres de pagination
-            const limit = parseInt(req.query.limit as string) || 3;
-            const page = parseInt(req.query.page as string) || 1;
-            const offset = (page - 1) * limit;
+			// Récupération des paramètres de pagination
+			const limit = parseInt(req.query.limit as string) || 3;
+			const page = parseInt(req.query.page as string) || 1;
+			const offset = (page - 1) * limit;
 
-            // Récupérer toutes les commandes avec détails
-            const allOrders = await orderModel.findByUserIdWithDetails(user.user_id);
+			// Récupérer toutes les commandes avec détails
+			const allOrders = await orderModel.findByUserIdWithDetails(user.user_id);
 
-            // Appliquer la pagination
-            const total = allOrders.length;
-            const pages = Math.ceil(total / limit);
-            const paginatedOrders = allOrders.slice(offset, offset + limit);
+			// Appliquer la pagination
+			const total = allOrders.length;
+			const pages = Math.ceil(total / limit);
+			const paginatedOrders = allOrders.slice(offset, offset + limit);
 
-            res.json({
-                data: paginatedOrders,
-                pagination: {
-                    page,
-                    limit,
-                    total,
-                    pages
-                }
-            });
-        } catch (error) {
-            console.error('Error getting user orders:', error);
-            res.status(500).json({
-                error: 'Failed to retrieve user orders'
-            });
-        }
-    }
+			res.json({
+				data: paginatedOrders,
+				pagination: {
+					page,
+					limit,
+					total,
+					pages
+				}
+			});
+		} catch (error) {
+			console.error('Error getting user orders:', error);
+			res.status(500).json({
+				error: 'Failed to retrieve user orders'
+			});
+		}
+	}
 };
 
 export { ordersController };
