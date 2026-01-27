@@ -2,7 +2,7 @@ name: E2E Tests
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   schedule:
     - cron: '0 0 * * *' # Nightly
 

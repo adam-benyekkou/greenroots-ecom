@@ -1,5 +1,7 @@
 # GreenRoots
 
+GreenRoots is an e-commerce platform dedicated to global reforestation. It connects users with tree-planting projects, allowing them to purchase trees, track their growth, and contribute to a greener planet.
+
 ## Architecture
 
 ```mermaid
