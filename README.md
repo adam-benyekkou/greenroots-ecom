@@ -5,8 +5,8 @@
 ```mermaid
 graph TD
     User[User] -->|HTTPS| Nginx[Nginx Reverse Proxy]
-    Nginx -->|Port 3000| Front[Frontend @front (React Router/Vite)]
-    Nginx -->|Port 3001| Back[Backend @back (Express)]
+    Nginx -->|Port 3000| Front["Frontend @front (React Router/Vite)"]
+    Nginx -->|Port 3001| Back["Backend @back (Express)"]
     Front -->|API Calls| Back
     Back -->|Queries| DB[(PostgreSQL)]
     Back -->|Payments| Stripe[Stripe API]
