@@ -29,4 +29,6 @@ jobs:
 
     - name: Run Playwright tests
       working-directory: ./@front
+      env:
+        VITE_API_URL: 'http://localhost:3001/api'
       run: npm run test:e2e
