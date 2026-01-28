@@ -87,14 +87,14 @@ export async function loader(params: Route.LoaderArgs) {
 export default function Catalog(props: Route.ComponentProps) {
 	const { loaderData } = props;
 
-	// Mapping to display continent names (English now)
+	// Mapping to display continent names (English)
 	const continentNames: Record<string, string> = {
 		europe: "Europe",
-		asie: "Asia",
-		"amerique-nord": "North America",
-		"amerique-sud": "South America",
-		afrique: "Africa",
-		oceanie: "Oceania",
+		asia: "Asia",
+		"north-america": "North America",
+		"south-america": "South America",
+		africa: "Africa",
+		oceania: "Oceania",
 	};
 
 	const continentName = loaderData.continent

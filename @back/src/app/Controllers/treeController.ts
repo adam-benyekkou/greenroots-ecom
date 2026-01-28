@@ -82,14 +82,14 @@ const treeController = {
                 });
             }
 
-            // Mapping URL française -> nom base de données française
+            // Mapping English URL slugs -> English DB values
             const continentMapping: Record<string, string> = {
                 'europe': 'Europe',
-                'asie': 'Asie',
-                'amerique-nord': 'Amérique du Nord',
-                'amerique-sud': 'Amérique du Sud',
-                'afrique': 'Afrique',
-                'oceanie': 'Océanie'  // Changé de 'australie': 'Australie'
+                'asia': 'Asia',
+                'north-america': 'North America',
+                'south-america': 'South America',
+                'africa': 'Africa',
+                'oceania': 'Oceania'
             };
 
             const continent = continentMapping[continentParam.toLowerCase()];
