@@ -71,8 +71,8 @@ export async function action(args: Route.ActionArgs) {
 	if (!response.ok) {
 		const result = await response.json().catch(() => null);
 		const message =
-			result?.message || "Error while saving the order.";
-		return new Response(message, { status: 500 });
+			result?.error || result?.message || "Error while saving the order.";
+		return { error: message };
 	}
 
 	const { urlSession } = await response.json();
