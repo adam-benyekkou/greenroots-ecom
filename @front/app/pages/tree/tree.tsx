@@ -119,7 +119,7 @@ export default function Tree(props: Route.ComponentProps) {
 
 					<div className="tree-price">
 						<span className="price-value">{tree.price}€</span>
-						<span className="price-unit">par arbre</span>
+						<span className="price-unit">per tree</span>
 					</div>
 
 					{/* Messages du panier */}
@@ -146,7 +146,7 @@ export default function Tree(props: Route.ComponentProps) {
 					<div className="tree-purchase">
 						<div className="quantity-section">
 							<label htmlFor="quantity" className="quantity-label">
-								Quantité :
+								Quantity :
 							</label>
 							<QuantitySelector
 								value={quantity}
@@ -165,10 +165,10 @@ export default function Tree(props: Route.ComponentProps) {
 							{isAddingToCart ? (
 								<>
 									<span className="loading-spinner" aria-hidden="true" />
-									Ajout en cours...
+									Adding...
 								</>
 							) : (
-								"Ajouter au panier"
+								"Add to cart"
 							)}
 						</button>
 					</div>
@@ -180,18 +180,18 @@ export default function Tree(props: Route.ComponentProps) {
 				<section className="project-section">
 					<div className="project-content">
 						<div className="project-text">
-							<h2 className="project-title">Projet de reforestation</h2>
+							<h2 className="project-title">Reforestation Project</h2>
 							<h3 className="project-name">{project.name}</h3>
 							<p className="project-description">{project.description}</p>
 
 							<div className="project-impact">
 								<div className="impact-item">
 									<span className="impact-number">+1</span>
-									<span className="impact-label">Arbre planté</span>
+									<span className="impact-label">Tree planted</span>
 								</div>
 								<div className="impact-item">
 									<span className="impact-number">≈ 22kg</span>
-									<span className="impact-label">CO₂ absorbé/an</span>
+									<span className="impact-label">CO₂ absorbed/year</span>
 								</div>
 							</div>
 						</div>

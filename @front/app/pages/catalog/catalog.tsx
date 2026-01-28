@@ -63,8 +63,8 @@ export async function loader(params: Route.LoaderArgs) {
 			name: tree.name,
 			price: tree.price,
 			image: tree.image,
-			localization: tree.projects?.[0]?.localization?.country || "Non spécifié",
-			project_name: tree.projects?.[0]?.name || "Projet général",
+			localization: tree.projects?.[0]?.localization?.country || "Not specified",
+			project_name: tree.projects?.[0]?.name || "General Project",
 		}));
 
 		// access to pages = total number of available pages

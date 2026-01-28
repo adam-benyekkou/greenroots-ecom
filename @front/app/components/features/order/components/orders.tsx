@@ -166,7 +166,7 @@ const OrdersList: React.FC<{
 
     return (
         <div className="orders-list">
-            <h1 className="orders-title">Mes Commandes</h1>
+            <h1 className="orders-title">My Orders</h1>
 
             {displayedOrders.map(order => (
                 <OrderItem key={order.id} order={order} onViewDetails={onViewDetails} />
@@ -178,7 +178,7 @@ const OrdersList: React.FC<{
                         onClick={() => onPageChange(currentPage - 1)}
                         className="pagination-btn"
                     >
-                        Page précédente
+                        Previous Page
                     </button>
                 )}
 
@@ -187,7 +187,7 @@ const OrdersList: React.FC<{
                         onClick={() => onPageChange(currentPage + 1)}
                         className="pagination-btn"
                     >
-                        Page suivante
+                        Next Page
                     </button>
                 )}
             </div>
@@ -196,33 +196,31 @@ const OrdersList: React.FC<{
 };
 
 // Composant détail d'une commande
-const OrderDetail: React.FC<{ order: Order; onBack: () => void }> = ({ order, onBack }) => (
-    <div className="order-detail">
         <div className="order-detail-header">
-            <h1 className="orders-title">Mes Commandes</h1>
+            <h1 className="orders-title">My Orders</h1>
             <button onClick={onBack} className="back-btn">
-                Retour
+                Back
             </button>
         </div>
 
         <div className="order-section">
-            <h3 className="section-title">Commande {order.number}</h3>
+            <h3 className="section-title">Order {order.number}</h3>
             <div className="order-info-card">
                 <div className="order-info-content">
-                    <span className="order-date-label">Date de commande: {order.date}</span>
+                    <span className="order-date-label">Order Date: {order.date}</span>
                     <div className="order-status-detail">{order.status}</div>
                 </div>
             </div>
         </div>
 
         <div className="order-section">
-            <h3 className="section-title">Détails de la commande</h3>
+            <h3 className="section-title">Order Details</h3>
             <div className="order-table">
                 <div className="table-header">
-                    <span>Produit</span>
-                    <span>Quantité</span>
-                    <span>Prix Unitaire</span>
-                    <span>Prix Total</span>
+                    <span>Product</span>
+                    <span>Quantity</span>
+                    <span>Unit Price</span>
+                    <span>Total Price</span>
                 </div>
                 {order.items.map((item, index) => (
                     <div key={index} className="table-row">
@@ -237,10 +235,10 @@ const OrderDetail: React.FC<{ order: Order; onBack: () => void }> = ({ order, on
 
         <div className="order-total-section">
             <div className="order-total-card">
-                Total Commande : {order.total}
+                Order Total : {order.total}
             </div>
         </div>
-    </div>
+    </div >
 );
 
 // Composant principal

@@ -8,11 +8,11 @@ type QuantitySelectorProps = {
 };
 
 export const QuantitySelector = ({
-									 value,
-									 onChange,
-									 disabled = false,
-									 max = 99,
-								 }: QuantitySelectorProps) => {
+	value,
+	onChange,
+	disabled = false,
+	max = 99,
+}: QuantitySelectorProps) => {
 	const increment = () => {
 		if (value < max) {
 			onChange(value + 1);
@@ -38,7 +38,7 @@ export const QuantitySelector = ({
 				type="button"
 				onClick={decrement}
 				disabled={value === 1 || disabled}
-				aria-label="Diminuer la quantité"
+				aria-label="Decrease quantity"
 				className="quantity-btn decrement"
 			>
 				−
@@ -51,13 +51,13 @@ export const QuantitySelector = ({
 				min="1"
 				max={max}
 				disabled={disabled}
-				aria-label="Quantité"
+				aria-label="Quantity"
 			/>
 			<button
 				type="button"
 				onClick={increment}
 				disabled={value >= max || disabled}
-				aria-label="Augmenter la quantité"
+				aria-label="Increase quantity"
 				className="quantity-btn increment"
 			>
 				+

@@ -459,7 +459,7 @@
     }
 
     .table-row > span:nth-child(2)::before {
-        content: "Quantité: ";
+        content: "Quantity: ";
     }
 
     .table-row > span:nth-child(3)::before {
