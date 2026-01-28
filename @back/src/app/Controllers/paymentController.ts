@@ -18,23 +18,23 @@ const paymentController = {
             const { user } = req;
 
             if (!order_id) {
-              return res.status(400).json({
-                error: 'Order ID is required'
-              });
+                return res.status(400).json({
+                    error: 'Order ID is required'
+                });
             }
 
             const order = await orderModel.findById(order_id);
 
             if (!order) {
-              return res.status(404).json({
-                error: 'Order not found'
-              });
+                return res.status(404).json({
+                    error: 'Order not found'
+                });
             }
 
             if (user?.role !== 'admin' && order.user_id !== user?.user_id) {
-              return res.status(403).json({
-                error: 'Access denied: You can only create payments for your own orders'
-              });
+                return res.status(403).json({
+                    error: 'Access denied: You can only create payments for your own orders'
+                });
             }
 
             const amount = await orderLineModel.calculateOrderTotal(order_id);
@@ -102,16 +102,16 @@ const paymentController = {
                 case 'payment_intent.succeeded':
                     const paymentIntent = event.data.object as any;
 
-                    // Vérifier si la transaction existe déjà
+                    // Check if transaction already exists
                     const existingPayment = await paymentModel.findByStripeId(paymentIntent.id);
 
                     if (existingPayment) {
-                        // Mettre à jour la transaction existante
+                        // Update existing transaction
                         await paymentModel.updateByStripeId(paymentIntent.id, {
                             status: PaymentStatus.COMPLETED
                         });
                     } else {
-                        // Créer une nouvelle transaction
+                        // Create a new transaction
                         await paymentModel.create({
                             order_id: paymentIntent.metadata.order_id,
                             stripe_payment_id: paymentIntent.id,
@@ -125,29 +125,29 @@ const paymentController = {
                     });
 
                     if (order) {
-                      const user = await userModel.findById(order.user_id);
-                      if (user && user.email) {
-                        const orderLines = await orderLineModel.findByOrderIdWithTreeDetails(order.order_id!);
-                        const totalAmount = await orderLineModel.calculateOrderTotal(order.order_id!);
+                        const user = await userModel.findById(order.user_id);
+                        if (user && user.email) {
+                            const orderLines = await orderLineModel.findByOrderIdWithTreeDetails(order.order_id!);
+                            const totalAmount = await orderLineModel.calculateOrderTotal(order.order_id!);
 
-                        try {
-                            const emailResult = await emailService.sendInvoiceEmail({
-                                email: user.email,
-                                firstName: user.first_name,
-                                lastName: user.last_name,
-                                orderId: order.order_id!,
-                                paymentIntentId: paymentIntent.id,
-                                orderLines: orderLines,
-                                totalAmount: totalAmount
-                            });
+                            try {
+                                const emailResult = await emailService.sendInvoiceEmail({
+                                    email: user.email,
+                                    firstName: user.first_name,
+                                    lastName: user.last_name,
+                                    orderId: order.order_id!,
+                                    paymentIntentId: paymentIntent.id,
+                                    orderLines: orderLines,
+                                    totalAmount: totalAmount
+                                });
 
-                            if (emailResult.success) {
-                              console.log('Email de facture envoyé avec succès:', emailResult.messageId);
+                                if (emailResult.success) {
+                                    console.log('Invoice email sent successfully:', emailResult.messageId);
+                                }
+                            } catch (emailError) {
+                                console.error('Error sending invoice email:', emailError);
                             }
-                        } catch (emailError) {
-                            console.error('Erreur envoi email de facture:', emailError);
                         }
-                      }
                     }
 
                     console.log(`Payment succeeded: ${paymentIntent.id}`);
@@ -156,16 +156,16 @@ const paymentController = {
                 case 'payment_intent.payment_failed':
                     const failedPayment = event.data.object as any;
 
-                    // Vérifier si la transaction existe déjà
+                    // Check if transaction already exists
                     const existingFailedPayment = await paymentModel.findByStripeId(failedPayment.id);
-                    
+
                     if (existingFailedPayment) {
-                        // Mettre à jour la transaction existante
+                        // Update existing transaction
                         await paymentModel.updateByStripeId(failedPayment.id, {
                             status: PaymentStatus.FAILED
                         });
                     } else {
-                        // Créer une nouvelle transaction
+                        // Create a new transaction
                         await paymentModel.create({
                             order_id: failedPayment.metadata.order_id,
                             stripe_payment_id: failedPayment.id,
@@ -272,7 +272,7 @@ const paymentController = {
         }
     },
 
-    // Route de test pour simuler le paiement sans front
+    // Test route to simulate payment without frontend
     async testPayment(req: Request, res: Response) {
         try {
             const { payment_intent_id } = req.body;
@@ -283,9 +283,9 @@ const paymentController = {
                 });
             }
 
-            // Simuler l'ajout d'une méthode de paiement de test
+            // Simulate adding a test payment method
             const paymentIntent = await stripe.paymentIntents.confirm(payment_intent_id, {
-                payment_method: 'pm_card_visa', // Carte de test Stripe
+                payment_method: 'pm_card_visa', // Stripe test card
                 return_url: `${process.env.FRONTEND_URL}/payment/return`
             });
 

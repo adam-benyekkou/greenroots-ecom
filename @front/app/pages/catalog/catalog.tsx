@@ -86,14 +86,14 @@ export async function loader(params: Route.LoaderArgs) {
 export default function Catalog(props: Route.ComponentProps) {
 	const { loaderData } = props;
 
-	// Mapping pour afficher les noms français des continents
+	// Mapping to display continent names (English now)
 	const continentNames: Record<string, string> = {
 		europe: "Europe",
-		asie: "Asie",
-		"amerique-nord": "Amérique du Nord",
-		"amerique-sud": "Amérique du Sud",
-		afrique: "Afrique",
-		oceanie: "Océanie",
+		asie: "Asia",
+		"amerique-nord": "North America",
+		"amerique-sud": "South America",
+		afrique: "Africa",
+		oceanie: "Oceania",
 	};
 
 	const continentName = loaderData.continent
@@ -101,8 +101,8 @@ export default function Catalog(props: Route.ComponentProps) {
 		: null;
 
 	const pageTitle = continentName
-		? `Nos arbres - ${continentName}`
-		: "Nos arbres - Monde entier";
+		? `Our Trees - ${continentName}`
+		: "Our Trees - Worldwide";
 
 	return (
 		<main>
@@ -126,10 +126,10 @@ export default function Catalog(props: Route.ComponentProps) {
 					</div>
 				) : (
 					<div className="empty-state">
-						<h2>Aucun arbre trouvé</h2>
-						<p>Aucun arbre n'est disponible pour cette région actuellement.</p>
+						<h2>No trees found</h2>
+						<p>No trees are available for this region currently.</p>
 						<Link to="/catalog" className="navigation-pages-links">
-							Voir tous les arbres
+							See all trees
 						</Link>
 					</div>
 				)}
@@ -141,7 +141,7 @@ export default function Catalog(props: Route.ComponentProps) {
 								to={`?page=${loaderData.page - 1}&limit=${loaderData.limit}`}
 								className="navigation-pages-links"
 							>
-								← Page précédente
+								← Previous Page
 							</Link>
 						)}
 
@@ -150,7 +150,7 @@ export default function Catalog(props: Route.ComponentProps) {
 								to={`?page=${loaderData.page + 1}&limit=${loaderData.limit}`}
 								className="navigation-pages-links"
 							>
-								Page suivante →
+								Next Page →
 							</Link>
 						)}
 					</div>

@@ -17,11 +17,11 @@ function LoginForm() {
 					<input id="email" name="email" required />
 				</div>
 				<div className="field">
-					<label htmlFor="password">Mot de passe:</label>
+					<label htmlFor="password">Password:</label>
 					<input type="password" id="password" name="password" required />
 				</div>
 				<button type="submit" className="button-connexion">
-					Se connecter
+					Login
 				</button>
 			</div>
 		</Form>

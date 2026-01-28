@@ -14,7 +14,7 @@ import iconTrash from "~/../assets/icons/iconTrash.svg";
 const API_URL = import.meta.env.VITE_API_URL;
 
 // format the price
-const priceFormatter = new Intl.NumberFormat("fr-FR", {
+const priceFormatter = new Intl.NumberFormat("en-US", {
 	style: "currency",
 	currency: "EUR",
 });
@@ -42,7 +42,7 @@ export async function action(args: Route.ActionArgs) {
 	const formData = await args.request.formData();
 	const rawItems = formData.get("items");
 	if (!rawItems) {
-		return new Response("Panier vide ou invalide", { status: 400 });
+		return new Response("Cart is empty or invalid", { status: 400 });
 	}
 	let items: Item;
 	try {
@@ -55,7 +55,7 @@ export async function action(args: Route.ActionArgs) {
 			price: item.price,
 		}));
 	} catch (e) {
-		return new Response("Erreur de parsing JSON", { status: 400 });
+		return new Response("JSON parsing error", { status: 400 });
 	}
 
 	// save the cart to the backend
@@ -71,13 +71,13 @@ export async function action(args: Route.ActionArgs) {
 	if (!response.ok) {
 		const result = await response.json().catch(() => null);
 		const message =
-			result?.message || "Erreur lors de l'enregistrement de la commande.";
+			result?.message || "Error while saving the order.";
 		return new Response(message, { status: 500 });
 	}
 
-  const {urlSession} = await response.json();
+	const { urlSession } = await response.json();
 
-  return redirect(urlSession);
+	return redirect(urlSession);
 }
 
 // page shopping cart
@@ -102,8 +102,8 @@ export default function ShoppingCartPage() {
 	return (
 		<main className="shopping-cart">
 			<div>
-				<h2>Panier</h2>
-				<Link to="/catalog">&lt; Poursuivre mes achats</Link>
+				<h2>Shopping Cart</h2>
+				<Link to="/catalog">&lt; Continue Shopping</Link>
 			</div>
 
 			<ShoppingCartList />
@@ -122,9 +122,9 @@ const ShoppingCartList = () => {
 			<table className="cart-container">
 				<thead>
 					<tr>
-						<th>Produit</th>
-						<th>Quantité</th>
-						<th>Prix</th>
+						<th>Product</th>
+						<th>Quantity</th>
+						<th>Price</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -142,7 +142,7 @@ const ShoppingCartList = () => {
 				<tfoot>
 					<tr>
 						<td colSpan={2} className="cart-total-text">
-							TOTAL prévisionnel
+							Estimated TOTAL
 						</td>
 						<td className="cart-total-value">
 							<Currency value={shoppingCart.total} />
@@ -161,7 +161,7 @@ const ShoppingCartList = () => {
 						//submit({ items: shoppingCart.items }, { method: "post" });
 					}}
 				>
-					Valider mon panier
+					Checkout
 				</button>
 			</div>
 		</>

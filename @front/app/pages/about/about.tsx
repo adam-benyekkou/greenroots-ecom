@@ -10,45 +10,45 @@ export default function About() {
         <div className="about-container">
             <div className="container-sections-1-2">
 
-                <section className="about-section1" aria-label="Nos actions de reforestation">
+                <section className="about-section1" aria-label="Our reforestation actions">
                     <img
                         src={farmMan}
-                        alt="Agriculteur travaillant dans un champ, symbolisant notre engagement avec les communautés locales"
+                        alt="Farmer working in a field, symbolizing our commitment to local communities"
                         className="about-image1"
                         loading="lazy"
                     />
                     <div className="main-div">
-                        <h2 className="about-title">Nos actions</h2>
-                        <p>Chez GreenRoots, nous nous engageons activement dans la lutte contre la déforestation en développant des projets de reforestation durables à travers le monde. En collaboration avec les communautés locales, nous plantons des essences d'arbres adaptées aux écosystèmes, favorisons la restauration des sols dégradés et soutenons la biodiversité. Chaque projet vise à créer un impact environnemental mesurable tout en apportant des bénéfices économiques et sociaux aux populations. Parce que replanter, c'est aussi réparer, nous croyons en un avenir plus vert, un arbre à la fois.</p>
+                        <h2 className="about-title">Our Actions</h2>
+                        <p>At GreenRoots, we are actively committed to fighting deforestation by developing sustainable reforestation projects around the world. In collaboration with local communities, we plant tree species adapted to ecosystems, promote the restoration of degraded soils, and support biodiversity. Each project aims to create a measurable environmental impact while providing economic and social benefits to populations. Because replanting is also repairing, we believe in a greener future, one tree at a time.</p>
                     </div>
                 </section>
 
-                <section className="about-section2" aria-label="Présentation de nos équipes">
+                <section className="about-section2" aria-label="Presentation of our teams">
                     <img
                         src={team}
-                        alt="Mains touchant délicatement le sol herbeux, représentant le lien entre nos équipes et la nature"
+                        alt="Hands gently touching the grassy ground, representing the link between our teams and nature"
                         className="about-image2"
                         loading="lazy"
                     />
                     <div className="main-div">
-                        <h2 className="about-title">Nos équipes</h2>
-                        <p>Derrière chaque projet, il y a une équipe passionnée et engagée. Nos experts en environnement, ingénieurs forestiers, coordinateurs de terrain et partenaires locaux travaillent main dans la main pour garantir l'impact durable de nos actions. Présents sur plusieurs continents, ils allient savoir-faire scientifique et connaissance du terrain pour adapter chaque reforestation aux besoins écologiques et humains de la région. En participant activement à la vie locale — de la sensibilisation à l'éducation environnementale — nos équipes s'intègrent pleinement aux communautés pour construire ensemble des solutions durables.</p>
+                        <h2 className="about-title">Our Teams</h2>
+                        <p>Behind every project is a passionate and committed team. Our environmental experts, forest engineers, field coordinators, and local partners work hand in hand to ensure the lasting impact of our actions. Present on several continents, they combine scientific know-how and field knowledge to adapt each reforestation to the ecological and human needs of the region. By actively participating in local life — from awareness raising to environmental education — our teams fully integrate into communities to build sustainable solutions together.</p>
                     </div>
                 </section>
             </div>
 
-            <section className="about-section3" aria-label="Informations de contact">
+            <section className="about-section3" aria-label="Contact information">
                 <div className="contact">
                     <div className="contact-main-container">
-                        <h2 className="about-title">Nous contacter</h2>
-                        <p>Vous avez une question sur nos projets, nos équipes ou nos arbres? N'hésitez pas à nous contacter, nous serons ravis d'échanger avec vous!</p>
-                        <Link to="mailto:hello@greenroots.org" className="email" aria-label="Envoyer un email à GreenRoots">
+                        <h2 className="about-title">Contact Us</h2>
+                        <p>Do you have a question about our projects, our teams, or our trees? Do not hesitate to contact us, we will be delighted to exchange with you!</p>
+                        <Link to="mailto:hello@greenroots.org" className="email" aria-label="Send an email to GreenRoots">
                             hello@greenroots.org
                         </Link>
                     </div>
                     <img
                         src={mail}
-                        alt="Icône d'enveloppe représentant le contact par email"
+                        alt="Envelope icon representing email contact"
                         className="envelope"
                         aria-hidden="true"
                     />

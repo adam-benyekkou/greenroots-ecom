@@ -94,10 +94,10 @@ export async function loader(params: Route.LoaderArgs) {
 // Helper functions
 function getStatusLabel(status: string): string {
     const statusMap: Record<string, string> = {
-        'pending': 'En cours',
-        'processing': 'En préparation',
-        'completed': 'Livré',
-        'cancelled': 'Annulé'
+        'pending': 'Pending',
+        'processing': 'Processing',
+        'completed': 'Delivered',
+        'cancelled': 'Cancelled'
     };
     return statusMap[status] || status;
 }
@@ -123,30 +123,30 @@ interface Order {
 const OrderDetail: React.FC<{ order: Order; onBack: () => void }> = ({ order, onBack }) => (
     <div className="order-detail">
         <div className="order-detail-header">
-            <h1 className="orders-title">Mes Commandes</h1>
+            <h1 className="orders-title">My Orders</h1>
             <button onClick={onBack} className="back-btn">
-                Retour
+                Back
             </button>
         </div>
 
         <div className="order-section">
-            <h3 className="section-title">Commande {order.number}</h3>
+            <h3 className="section-title">Order {order.number}</h3>
             <div className="order-info-card">
                 <div className="order-info-content">
-                    <span className="order-date-label">Date de commande: {order.date}</span>
+                    <span className="order-date-label">Order Date: {order.date}</span>
                     <div className="order-status-detail">{order.status}</div>
                 </div>
             </div>
         </div>
 
         <div className="order-section">
-            <h3 className="section-title">Détails de la commande</h3>
+            <h3 className="section-title">Order Details</h3>
             <div className="order-table">
                 <div className="table-header">
-                    <span>Produit</span>
-                    <span>Quantité</span>
-                    <span>Prix Unitaire</span>
-                    <span>Prix Total</span>
+                    <span>Product</span>
+                    <span>Quantity</span>
+                    <span>Unit Price</span>
+                    <span>Total Price</span>
                 </div>
                 {order.items.map((item, index) => (
                     <div key={index} className="table-row">
@@ -161,7 +161,7 @@ const OrderDetail: React.FC<{ order: Order; onBack: () => void }> = ({ order, on
 
         <div className="order-total-section">
             <div className="order-total-card">
-                Total Commande : {order.total}
+                Order Total: {order.total}
             </div>
         </div>
     </div>
@@ -186,7 +186,7 @@ const OrderItem: React.FC<{ order: Order; onViewDetails: (order: Order) => void 
                     onClick={() => onViewDetails(order)}
                     className="order-details-btn"
                 >
-                    Voir le détail
+                    View Details
                 </button>
             </div>
         </div>
@@ -213,7 +213,7 @@ export default function Orders(props: Route.ComponentProps) {
                         <OrderDetail order={selectedOrder} onBack={handleBack} />
                     ) : (
                         <div className="orders-list">
-                            <h1 className="orders-title">Mes Commandes</h1>
+                            <h1 className="orders-title">My Orders</h1>
 
                             {loaderData.orders.length > 0 ? (
                                 <div className="orders-grid">
@@ -223,10 +223,10 @@ export default function Orders(props: Route.ComponentProps) {
                                 </div>
                             ) : (
                                 <div className="empty-state">
-                                    <h2>Aucune commande trouvée</h2>
-                                    <p>Vous n'avez pas encore passé de commande.</p>
+                                    <h2>No orders found</h2>
+                                    <p>You haven't placed any orders yet.</p>
                                     <Link to="/catalog" className="navigation-pages-links">
-                                        Découvrir nos arbres
+                                        Discover our trees
                                     </Link>
                                 </div>
                             )}
@@ -238,7 +238,7 @@ export default function Orders(props: Route.ComponentProps) {
                                             to={`?page=${loaderData.page - 1}&limit=${loaderData.limit}`}
                                             className="navigation-pages-links"
                                         >
-                                            Page précédente
+                                            Previous Page
                                         </Link>
                                     )}
 
@@ -247,7 +247,7 @@ export default function Orders(props: Route.ComponentProps) {
                                             to={`?page=${loaderData.page + 1}&limit=${loaderData.limit}`}
                                             className="navigation-pages-links"
                                         >
-                                            Page suivante
+                                            Next Page
                                         </Link>
                                     )}
                                 </div>

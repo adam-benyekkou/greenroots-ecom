@@ -140,7 +140,7 @@ const ordersController = {
 				});
 			}
 
-			// Seuls les admins peuvent modifier le statut des commandes
+			// Only admins can update order status
 			if (user?.role !== "admin") {
 				return res.status(403).json({
 					error: "Access denied: Only administrators can update order status",
@@ -175,15 +175,15 @@ const ordersController = {
 				});
 			}
 
-			// Récupération des paramètres de pagination
+			// Retrieve pagination parameters
 			const limit = parseInt(req.query.limit as string) || 3;
 			const page = parseInt(req.query.page as string) || 1;
 			const offset = (page - 1) * limit;
 
-			// Récupérer toutes les commandes avec détails
+			// Retrieve all orders with details
 			const allOrders = await orderModel.findByUserIdWithDetails(user.user_id);
 
-			// Appliquer la pagination
+			// Apply pagination
 			const total = allOrders.length;
 			const pages = Math.ceil(total / limit);
 			const paginatedOrders = allOrders.slice(offset, offset + limit);

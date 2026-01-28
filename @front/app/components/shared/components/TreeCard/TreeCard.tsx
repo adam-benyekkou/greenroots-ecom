@@ -9,13 +9,13 @@ import projectIcon from "./icons/project.svg";
 import { cartService } from "~/services/cartService";
 
 function TreeCard({
-                      tree_id,
-                      name,
-                      price,
-                      image,
-                      localization,
-                      project_name,
-                  }: TreeCardProps) {
+    tree_id,
+    name,
+    price,
+    image,
+    localization,
+    project_name,
+}: TreeCardProps) {
     const [quantity, setQuantity] = useState(1);
     const [isAddingToCart, setIsAddingToCart] = useState(false);
     const [cartMessage, setCartMessage] = useState<string | null>(null);
@@ -24,50 +24,50 @@ function TreeCard({
     const navigation = useNavigation();
     const isSubmitting = navigation.formAction === "/add-to-shopping-cart";
 
-    // Déterminer le continent basé sur la localisation (noms français de la DB)
+    // Determine continent based on localization
     const getContinent = (location: string | undefined): string => {
-        if (!location) return 'Europe'; // Par défaut si pas de localisation
+        if (!location) return 'Europe'; // Default if no localization
 
         const locationLower = location.toLowerCase();
 
-        // Mapping exact selon vos données de base (pays français -> continents anglais pour CSS)
+        // Mapping based on database data (country -> continent)
         const locationToContinentMap: Record<string, string> = {
-            // Données existantes
+            // Existing data
             'france': 'Europe',
             'madagascar': 'Africa',
-            'brésil': 'South America',
+            'brazil': 'South America',
 
-            // Nouvelles données (noms français)
-            'indonésie': 'Asia',
+            // New data
+            'indonesia': 'Asia',
             'myanmar': 'Asia',
             'philippines': 'Asia',
-            'colombie': 'South America',
-            'pérou': 'South America',
-            'bolivie': 'South America',
+            'colombia': 'South America',
+            'peru': 'South America',
+            'bolivia': 'South America',
             'canada': 'North America',
-            'états-unis': 'North America',
-            'australie': 'Australia',
-            'roumanie': 'Europe',
+            'usa': 'North America',
+            'australia': 'Australia',
+            'romania': 'Europe',
             'portugal': 'Europe',
-            'sénégal': 'Africa',
+            'senegal': 'Africa',
             'mali': 'Africa',
         };
 
-        // Chercher une correspondance exacte
+        // Search for exact match
         const continent = locationToContinentMap[locationLower];
         if (continent) {
             return continent;
         }
 
-        // Fallback avec mots-clés (noms de continents français dans votre DB)
+        // Fallback with keywords
         if (locationLower.includes('europe')) return 'Europe';
-        if (locationLower.includes('asie') || locationLower.includes('asia')) return 'Asia';
-        if (locationLower.includes('amérique du nord') || locationLower.includes('north america')) return 'North America';
-        if (locationLower.includes('amérique du sud') || locationLower.includes('south america')) return 'South America';
-        if (locationLower.includes('afrique') || locationLower.includes('africa')) return 'Africa';
-        if (locationLower.includes('australie') || locationLower.includes('australia')) return 'Australia';
+        if (locationLower.includes('asia')) return 'Asia';
+        if (locationLower.includes('north america')) return 'North America';
+        if (locationLower.includes('south america')) return 'South America';
+        if (locationLower.includes('africa')) return 'Africa';
+        if (locationLower.includes('australia')) return 'Australia';
 
-        return 'Europe'; // Par défaut
+        return 'Europe'; // Default
     };
 
     const continent = getContinent(localization);
@@ -84,18 +84,18 @@ function TreeCard({
             const result = await cartService.addItem(tree_id, quantity);
 
             if (result.success) {
-                setCartMessage(`${quantity} ${name}${quantity > 1 ? 's' : ''} ajouté${quantity > 1 ? 's' : ''} au panier !`);
+                setCartMessage(`${quantity} ${name}${quantity > 1 ? 's' : ''} added to cart!`);
 
                 setTimeout(() => {
                     setCartMessage(null);
                 }, 3000);
 
             } else {
-                setCartError(result.error || "Erreur lors de l'ajout au panier");
+                setCartError(result.error || "Error adding to cart");
             }
         } catch (error) {
             console.error('Error adding to cart:', error);
-            setCartError("Erreur de connexion. Veuillez réessayer.");
+            setCartError("Connection error. Please try again.");
         } finally {
             setIsAddingToCart(false);
         }
@@ -107,7 +107,7 @@ function TreeCard({
             onSubmit={handleAddToCart}
             data-continent={continent}
         >
-            <img src={image} alt={`${name} - Arbre de ${localization}`} />
+            <img src={image} alt={`${name} - Tree from ${localization}`} />
             <div className="tree-card-text-content">
                 <div className="tree-card-name-price">
                     <Link to={`/tree/${tree_id}`} className="tree-name-link">
@@ -120,12 +120,12 @@ function TreeCard({
                     <div className="tree-card-localization">
                         <img
                             src={localizationIcon}
-                            alt="Localisation"
+                            alt="Localization"
                         />
                         <p>{localization}</p>
                     </div>
                     <div className="tree-card-project">
-                        <img src={projectIcon} alt="Projet" />
+                        <img src={projectIcon} alt="Project" />
                         <p>{project_name}</p>
                     </div>
                 </div>
@@ -156,7 +156,7 @@ function TreeCard({
                         className="add-cart-button"
                         disabled={isSubmitting || isAddingToCart}
                     >
-                        {isAddingToCart ? "Ajout..." : "Ajouter au panier"}
+                        {isAddingToCart ? "Adding..." : "Add to cart"}
                     </button>
                 </div>
             </div>

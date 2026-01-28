@@ -15,7 +15,7 @@ function RegisterForm() {
 			{/* form fields */}
 			<div className="form-container">
 				<div className="field">
-					<label htmlFor="first_name">Prénom*</label>
+					<label htmlFor="first_name">First Name*</label>
 					<input
 						id="first_name"
 						name="first_name"
@@ -30,7 +30,7 @@ function RegisterForm() {
 					) : null}
 				</div>
 				<div className="field">
-					<label htmlFor="last_name">Nom*</label>
+					<label htmlFor="last_name">Last Name*</label>
 					<input
 						id="last_name"
 						name="last_name"
@@ -61,7 +61,7 @@ function RegisterForm() {
 					) : null}
 				</div>
 				<div className="field">
-					<label htmlFor="phone_number">Numéro de téléphone</label>
+					<label htmlFor="phone_number">Phone Number</label>
 					<input
 						id="phone_number"
 						name="phone_number"
@@ -78,7 +78,7 @@ function RegisterForm() {
 					) : null}
 				</div>
 				<div className="field">
-					<label htmlFor="password">Mot de passe*</label>
+					<label htmlFor="password">Password*</label>
 					<input
 						type="password"
 						id="password"
@@ -95,7 +95,7 @@ function RegisterForm() {
 					) : null}
 				</div>
 				<div className="field">
-					<label htmlFor="confirm-password">Confirmer le mot de passe:*</label>
+					<label htmlFor="confirm-password">Confirm Password:*</label>
 					<input
 						type="password"
 						id="confirm-password"
@@ -105,7 +105,7 @@ function RegisterForm() {
 				</div>
 				{/* submit button */}
 				<button type="submit" className="button-submission">
-					Créer un compte
+					Create Account
 				</button>
 			</div>
 		</Form>

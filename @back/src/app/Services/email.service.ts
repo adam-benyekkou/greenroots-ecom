@@ -69,9 +69,9 @@ class EmailService {
                     address: process.env.EMAIL_FROM || process.env.EMAIL_USER || ''
                 },
                 to: data.email,
-                subject: '🌱 Bienvenue sur GreenRoots !',
+                subject: '🌱 Welcome to GreenRoots!',
                 html: this.getWelcomeEmailTemplate(data.firstName, data.lastName),
-                text: `Bienvenue ${data.firstName} ${data.lastName} ! Votre inscription sur GreenRoots a été réalisée avec succès.`
+                text: `Welcome ${data.firstName} ${data.lastName}! Your registration on GreenRoots was successful.`
             };
 
             const info = await this.transporter.sendMail(mailOptions);
@@ -81,40 +81,40 @@ class EmailService {
                 messageId: info.messageId
             };
         } catch (error) {
-            console.error('Erreur envoi email de bienvenue:', error);
+            console.error('Error sending welcome email:', error);
             return {
                 success: false,
-                error: error instanceof Error ? error.message : 'Erreur inconnue'
+                error: error instanceof Error ? error.message : 'Unknown error'
             };
         }
     }
 
     // Email de confirmation de paiement avec facture
     async sendInvoiceEmail(data: InvoiceEmailData): Promise<{ success: boolean; messageId?: string; error?: string }> {
-        try {         
+        try {
             const mailOptions = {
                 from: {
                     name: process.env.EMAIL_FROM_NAME || 'GreenRoots',
                     address: process.env.EMAIL_FROM || process.env.EMAIL_USER || ''
                 },
                 to: data.email,
-                subject: `🌱 Confirmation de votre commande #${data.orderId} - GreenRoots`,
+                subject: `🌱 Order Confirmation #${data.orderId} - GreenRoots`,
                 html: this.getInvoiceEmailTemplate(data),
-                text: `Merci ${data.firstName} ${data.lastName} ! Votre commande #${data.orderId} a été confirmée et payée avec succès.`
+                text: `Thank you ${data.firstName} ${data.lastName}! Your order #${data.orderId} has been confirmed and paid successfully.`
             };
 
             const info = await this.transporter.sendMail(mailOptions);
-            console.log('✅ Email facture envoyé:', info.messageId);
+            console.log('✅ Invoice email sent:', info.messageId);
 
             return {
                 success: true,
                 messageId: info.messageId
             };
         } catch (error) {
-            console.error('❌ Erreur envoi email de facture:', error);
+            console.error('❌ Error sending invoice email:', error);
             return {
                 success: false,
-                error: error instanceof Error ? error.message : 'Erreur inconnue'
+                error: error instanceof Error ? error.message : 'Unknown error'
             };
         }
     }
@@ -123,11 +123,11 @@ class EmailService {
     private getWelcomeEmailTemplate(firstName: string, lastName: string): string {
         return `
         <!DOCTYPE html>
-        <html lang="fr">
+        <html lang="en">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Bienvenue sur GreenRoots</title>
+            <title>Welcome to GreenRoots</title>
             <style>
                 * {
                     box-sizing: border-box;
@@ -244,48 +244,48 @@ class EmailService {
         <body>
             <div class="container">
                 <div class="header">
-                    <h1>Bienvenue sur GreenRoots</h1>
+                    <h1>Welcome to GreenRoots</h1>
                 </div>
                 <div class="content">
                     <div class="welcome-text">
-                        Bonjour ${firstName} ${lastName},
+                        Hello ${firstName} ${lastName},
                     </div>
-                    <p>Bienvenue dans la communauté GreenRoots ! Votre compte a été créé avec succès.</p>
-                    <p>Ensemble, nous pouvons agir concrètement contre la déforestation en parrainant des arbres et en soutenant des projets de reforestation partout dans le monde.</p>
+                    <p>Welcome to the GreenRoots community! Your account has been successfully created.</p>
+                    <p>Together, we can take concrete action against deforestation by sponsoring trees and supporting reforestation projects around the world.</p>
                     
                     <div class="features">
-                        <h3>Votre impact commence maintenant :</h3>
+                        <h3>Your impact starts now:</h3>
                         <div class="feature-item">
                             <span class="feature-icon">✓</span>
-                            <span>Parrainez des arbres dans des projets certifiés</span>
+                            <span>Sponsor trees in certified projects</span>
                         </div>
                         <div class="feature-item">
                             <span class="feature-icon">✓</span>
-                            <span>Suivez la croissance de vos arbres en temps réel</span>
+                            <span>Track the growth of your trees in real time</span>
                         </div>
                         <div class="feature-item">
                             <span class="feature-icon">✓</span>
-                            <span>Mesurez votre contribution à la lutte contre la déforestation</span>
+                            <span>Measure your contribution to the fight against deforestation</span>
                         </div>
                         <div class="feature-item">
                             <span class="feature-icon">✓</span>
-                            <span>Rejoignez une communauté engagée pour la planète</span>
+                            <span>Join a community committed to the planet</span>
                         </div>
                     </div>
 
                     <p style="text-align: center;">
                         <a href="${process.env.FRONTEND_URL || 'http://localhost:3000'}/login" class="button">
-                            Découvrir nos arbres
+                            Discover our trees
                         </a>
                     </p>
                     
-                    <p>Votre premier arbre n'attend que vous. Chaque parrainage contribue directement à la restauration des écosystèmes forestiers et à la lutte contre le changement climatique.</p>
-                    <p>Merci de rejoindre notre mission.</p>
-                    <p><strong>L'équipe GreenRoots</strong></p>
+                    <p>Your first tree is waiting for you. Each sponsorship contributes directly to the restoration of forest ecosystems and the fight against climate change.</p>
+                    <p>Thank you for joining our mission.</p>
+                    <p><strong>The GreenRoots Team</strong></p>
                 </div>
                 <div class="footer">
-                    <p>Cet email a été envoyé automatiquement, merci de ne pas y répondre directement.</p>
-                    <p>© 2025 GreenRoots - Tous droits réservés</p>
+                    <p>This email was sent automatically, please do not reply directly.</p>
+                    <p>© 2025 GreenRoots - All rights reserved</p>
                 </div>
             </div>
         </body>
@@ -309,11 +309,11 @@ class EmailService {
 
         return `
         <!DOCTYPE html>
-        <html lang="fr">
+        <html lang="en">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Facture GreenRoots #${data.orderId}</title>
+            <title>GreenRoots Invoice #${data.orderId}</title>
             <style>
                 * {
                     box-sizing: border-box;
@@ -471,44 +471,44 @@ class EmailService {
         <body>
             <div class="container">
                 <div class="header">
-                    <h1>🌱 Facture de confirmation</h1>
-                    <p>Merci pour votre contribution à la reforestation !</p>
+                    <h1>🌱 Confirmation Invoice</h1>
+                    <p>Thank you for contributing to reforestation!</p>
                 </div>
                 <div class="content">
                     <div class="invoice-details">
-                        <h3>Détails de votre commande</h3>
+                        <h3>Order Details</h3>
                         <div class="detail-row">
-                            <span class="detail-label">Numéro de commande :</span>
+                            <span class="detail-label">Order Number:</span>
                             <span class="detail-value">#${data.orderId}</span>
                         </div>
                         <div class="detail-row">
-                            <span class="detail-label">Date :</span>
-                            <span class="detail-value">${new Date().toLocaleDateString('fr-FR')}</span>
+                            <span class="detail-label">Date:</span>
+                            <span class="detail-value">${new Date().toLocaleDateString('en-US')}</span>
                         </div>
                         <div class="detail-row">
-                            <span class="detail-label">Client :</span>
+                            <span class="detail-label">Customer:</span>
                             <span class="detail-value">${data.firstName} ${data.lastName}</span>
                         </div>
                         <div class="detail-row">
-                            <span class="detail-label">Email :</span>
+                            <span class="detail-label">Email:</span>
                             <span class="detail-value">${data.email}</span>
                         </div>
                         <div class="detail-row">
-                            <span class="detail-label">ID de paiement :</span>
+                            <span class="detail-label">Payment ID:</span>
                             <span class="detail-value">${data.paymentIntentId}</span>
                         </div>
                         <div class="detail-row">
-                            <span class="detail-label">Statut :</span>
-                            <span class="status-badge">✓ PAYÉ</span>
+                            <span class="detail-label">Status:</span>
+                            <span class="status-badge">✓ PAID</span>
                         </div>
                     </div>
 
                     <table class="items-table">
                         <thead>
                             <tr>
-                                <th>Arbre parrainé</th>
-                                <th>Quantité</th>
-                                <th>Prix unitaire</th>
+                                <th>Sponsored Tree</th>
+                                <th>Quantity</th>
+                                <th>Unit Price</th>
                                 <th>Total</th>
                             </tr>
                         </thead>
@@ -522,17 +522,17 @@ class EmailService {
                     </table>
 
                     <div class="thank-you">
-                        <h3>🌿 Merci pour votre engagement !</h3>
-                        <p>Votre parrainage contribue directement à la reforestation et à la lutte contre le changement climatique. Chaque arbre planté fait la différence pour notre planète.</p>
-                        <p>Vous recevrez prochainement des nouvelles de vos arbres et de leur impact environnemental.</p>
+                        <h3>🌿 Thank you for your commitment!</h3>
+                        <p>Your sponsorship contributes directly to reforestation and the fight against climate change. Every tree planted makes a difference for our planet.</p>
+                        <p>You will soon receive updates about your trees and their environmental impact.</p>
                     </div>
 
-                    <p style="margin-top: 30px;"><strong>L'équipe GreenRoots</strong></p>
+                    <p style="margin-top: 30px;"><strong>The GreenRoots Team</strong></p>
                 </div>
                 <div class="footer">
-                    <p>Cette facture a été générée automatiquement suite à votre paiement.</p>
-                    <p>© 2025 GreenRoots - Tous droits réservés</p>
-                    <p>Pour toute question, contactez-nous à support@greenroots.website</p>
+                    <p>This invoice was generated automatically following your payment.</p>
+                    <p>© 2025 GreenRoots - All rights reserved</p>
+                    <p>For any questions, contact us at support@greenroots.website</p>
                 </div>
             </div>
         </body>

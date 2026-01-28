@@ -61,7 +61,7 @@ export function Header(props: { user: User | null }) {
 												</li>
 												<li>
 													<Link to="/orders" onClick={closeMenu}>
-														Mes commandes
+														My Orders
 													</Link>
 												</li>
 												<li>
@@ -71,7 +71,7 @@ export function Header(props: { user: User | null }) {
 															onMouseDown={(e) => e.stopPropagation()}
 															onClick={() => setTimeout(closeMenu, 100)}
 														>
-															Se déconnecter
+															Logout
 														</button>
 													</Form>
 												</li>
@@ -80,12 +80,12 @@ export function Header(props: { user: User | null }) {
 											<>
 												<li>
 													<Link to="/login" onClick={closeMenu}>
-														Se connecter
+														Login
 													</Link>
 												</li>
 												<li>
 													<Link to="/register" onClick={closeMenu}>
-														S'inscrire
+														Register
 													</Link>
 												</li>
 											</>

@@ -113,7 +113,7 @@ export class AuthService {
 				console.error(`❌ Échec envoi email à ${savedUser.email}:`, result.error);
 			}
 		}).catch(error => {
-			console.error('❌ Erreur envoi email de bienvenue:', error);
+			console.error('❌ Error sending welcome email:', error);
 		});
 
 		// Return user without password

@@ -10,12 +10,12 @@ export function meta() {
 	return [
 		{
 			title:
-				"GreenRoots - plantez des arbres pour lutter contre la déforestation",
+				"GreenRoots - plant trees to fight deforestation",
 		},
 		{
 			name: "description",
 			content:
-				"Parrainez un arbre dans un de nos projets de notre reforestation à travers le monde",
+				"Sponsor a tree in one of our reforestation projects around the world",
 		},
 	];
 }
@@ -66,30 +66,30 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 		<main>
 			<section className="hero-section">
 				<h1>
-					Participez à la reforestation avec <span>GreenRoots</span>
+					Participate in reforestation with <span>GreenRoots</span>
 				</h1>
 			</section>
 
 			<section className="sub-hero-section-full-width">
 				<div className="container-sub-hero">
-					<img src={homePageSeed} alt="graine poussant dans la forêt" />
+					<img src={homePageSeed} alt="seed growing in the forest" />
 					<div className="sub-hero-text-content">
-						<p>Partout dans le monde, nos projets revitalisent la planète!</p>
+						<p>All over the world, our projects are revitalizing the planet!</p>
 						<h3>make our planet green again!</h3>
 						<Link to="/catalog" className="link-button-desktop">
-							Voir tous nos arbres
+							See all our trees
 						</Link>
 					</div>
 				</div>
 			</section>
 
 			<section className="trees-section">
-				<h2>Nos arbres autour du monde</h2>
+				<h2>Our trees around the world</h2>
 				<div className="tree-card-container">
 					<ul>
 						{error ? (
 							<li>
-								<p>Erreur: {error}</p>
+								<p>Error: {error}</p>
 							</li>
 						) : trees.length > 0 ? (
 							trees.map((tree: TreeCardProps) => (
@@ -106,13 +106,13 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 							))
 						) : (
 							<li>
-								<p>Aucun arbre disponible pour le moment.</p>
+								<p>No trees available at the moment.</p>
 							</li>
 						)}
 					</ul>
 				</div>
 				<Link to="/catalog" className="link-button-mobile">
-					Voir tous nos arbres
+					See all our trees
 				</Link>
 			</section>
 		</main>

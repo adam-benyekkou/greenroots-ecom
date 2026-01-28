@@ -6,26 +6,26 @@ export function Footer() {
         <>
             <footer>
                 <div className="footer-div">
-                    <h3 className="footer-title">Notre entreprise</h3>
-                    <Link to="/catalog">Catalogue</Link>
-                    <Link to="/about">Notre pépinière</Link>
-                    <Link to="/blog">Blog nature</Link>
+                    <h3 className="footer-title">Our Company</h3>
+                    <Link to="/catalog">Catalog</Link>
+                    <Link to="/about">Our Nursery</Link>
+                    <Link to="/blog">Nature Blog</Link>
                 </div>
                 <div className="footer-div">
-                    <h3 className="footer-title">Ressources</h3>
-                    <Link to="/cgv">CGV</Link>
-                    <Link to="/mentions-legales">Mentions légales</Link>
-                    <Link to="/confidentialite">Politique de confidentialité</Link>
+                    <h3 className="footer-title">Resources</h3>
+                    <Link to="/cgv">T&C</Link>
+                    <Link to="/mentions-legales">Legal Notice</Link>
+                    <Link to="/confidentialite">Privacy Policy</Link>
                 </div>
             </footer>
 
             <div className="footer-eco">
-                <strong>🌱 Pépinière éco-responsable</strong> • 100% local • 0 pesticide
+                <strong>🌱 Eco-responsible Nursery</strong> • 100% local • 0 pesticide
                 <br />
                 <span className="footer-eco-details">
-                    Ce site consomme <strong>8× moins d'énergie</strong> que la moyenne des e-commerces.{" "}
+                    This site consumes <strong>8× less energy</strong> than average e-commerce sites.{" "}
                     <Link to="/ecoconception" className="footer-eco-link">
-                        En savoir plus
+                        Learn more
                     </Link>
                 </span>
             </div>
