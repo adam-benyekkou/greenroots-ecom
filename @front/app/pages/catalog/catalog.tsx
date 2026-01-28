@@ -11,12 +11,12 @@ import { continents } from "~/continents";
 export function meta() {
 	return [
 		{
-			title: "GreenRoots - catalogue d'arbres",
+			title: "GreenRoots - Tree Catalog",
 		},
 		{
 			name: "description",
 			content:
-				"Découvrez notre sélection d'arbres à parrainer dans nos projets de reforestation à travers le monde. Choisissez une espèce, un lieu et participez dès aujourd'hui à la lutte contre la déforestation.",
+				"Discover our selection of trees to sponsor in our reforestation projects around the world. Choose a species, a location, and participate today in the fight against deforestation.",
 		},
 	];
 }
