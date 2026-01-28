@@ -11,7 +11,7 @@ services:
       - db_data:/var/lib/postgresql/data
       - ./@back/database/migration/create-tables.sql:/docker-entrypoint-initdb.d/01-create-tables.sql
       - ./@back/database/seeders/prod-data.sql:/docker-entrypoint-initdb.d/02-prod-data.sql
-  
+
   traefik:
     image: traefik:v2.10
     container_name: traefik
@@ -25,7 +25,6 @@ services:
       - "--entrypoints.websecure.address=:443"
       - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
       - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
-      - "--certificatesresolvers.myresolver.acme.email=${EMAIL_USER}"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
     ports:
       - "80:80"
@@ -51,14 +50,7 @@ services:
       - DB_PORT=5432
       - STRIPE_PUBLIC_KEY=${STRIPE_PUBLIC_KEY}
       - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
-      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
       - REDIRECT_CHECKOUT_PAGE=${REDIRECT_CHECKOUT_PAGE}
-      - SMTP_HOST=${SMTP_HOST}
-      - SMTP_PORT=${SMTP_PORT}
-      - EMAIL_USER=${EMAIL_USER}
-      - EMAIL_PASS=${EMAIL_PASS}
-      - EMAIL_FROM=${EMAIL_FROM}
-      - EMAIL_FROM_NAME=${EMAIL_FROM_NAME}
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.backend.rule=Host(`greenroots.cavydev.com`) && PathPrefix(`/api`)"
