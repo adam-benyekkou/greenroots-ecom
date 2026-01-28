@@ -35,36 +35,37 @@ INSERT INTO localization (country, continent) VALUES
 
 
 INSERT INTO tree (name, description, price, image, price_id) VALUES
-('Oak', 'The oak is a majestic tree, known for its longevity and lobed leaves. It grows in temperate regions and can reach several tens of meters. Its acorns feed animals and its strong wood is used for construction, furniture, and barrels. It promotes biodiversity and provides shade.', 15.50, '/assets/images/trees/chene.webp', 'price_1S10mE4FFXRhp9TJ4L7ZgROO'),
-('Baobab', 'The baobab is a majestic tree nicknamed "tree of life". Its massive trunk stores water to survive droughts. Its leaves, fruits, and bark are used in food and traditional medicine. It provides shade, feeds many species, and plays a vital role in the ecosystem.', 25.00, '/assets/images/trees/baobab.webp', 'price_1S10u74FFXRhp9TJSGE8BX3r'),
-('Eucalyptus', 'The eucalyptus is a tree native to Australia, known for its rapid growth and aromatic leaves. Its wood is used for construction and paper, while its leaves produce essential oils with medicinal properties. It offers a habitat for wildlife and contributes to biodiversity.', 30.00, '/assets/images/trees/eucalyptus.webp', 'price_1S10wW4FFXRhp9TJEX3k5MYy'),
-('Rosewood', 'Rosewood is a tropical tree renowned for its dense, hard, and colorful wood. Used for furniture, cabinet making, and musical instruments, it stands out for its durability and aesthetics. It also contributes to biodiversity by offering habitat and food to many species.', 45.00, '/assets/images/trees/palissandre.webp', 'price_1S10x84FFXRhp9TJZfmYqlnG'),
+('Oak', 'The oak is a majestic tree, known for its longevity and lobed leaves. It grows in temperate regions and can reach several tens of meters. Its acorns feed animals and its strong wood is used for construction, furniture, and barrels. It promotes biodiversity and provides shade.', 15.50, '/assets/images/trees/chene.webp', 'price_1SugPMFE6fL5cookFpV4m79S'),
+('Baobab', 'The baobab is a majestic tree nicknamed "tree of life". Its massive trunk stores water to survive droughts. Its leaves, fruits, and bark are used in food and traditional medicine. It provides shade, feeds many species, and plays a vital role in the ecosystem.', 25.00, '/assets/images/trees/baobab.webp', 'price_1SugPNFE6fL5cookhucECwmO'),
+('Eucalyptus', 'The eucalyptus is a tree native to Australia, known for its rapid growth and aromatic leaves. Its wood is used for construction and paper, while its leaves produce essential oils with medicinal properties. It offers a habitat for wildlife and contributes to biodiversity.', 30.00, '/assets/images/trees/eucalyptus.webp', 'price_1SugPNFE6fL5cookMZSpWoSP'),
+('Rosewood', 'Rosewood is a tropical tree renowned for its dense, hard, and colorful wood. Used for furniture, cabinet making, and musical instruments, it stands out for its durability and aesthetics. It also contributes to biodiversity by offering habitat and food to many species.', 45.00, '/assets/images/trees/palissandre.webp', 'price_1SugPOFE6fL5cookiONPRWrN'),
 
 -- Asia (tropical deforestation)
-('Dipterocarpus', 'Dipterocarpus is a large tropical tree from Southeast Asia, often dominant in primary forests. Its dense wood is used for construction and furniture, and its resin has medicinal properties. It plays a crucial ecological role by offering food and shelter to many species.', 45.00, '/assets/images/trees/dipterocarpus.webp', 'price_1S10yL4FFXRhp9TJgWgampB8'),
-('Burmese Teak', 'Burmese teak is a tropical tree from Southeast Asia, renowned for its dense, resistant, and high-quality wood. Used in shipbuilding, furniture, and decoration, it resists insects and moisture. Its slow growth makes it a precious wood, and it contributes to biodiversity by providing habitat and food for local wildlife.', 38.00, '/assets/images/trees/teck-birman.webp', 'price_1S110k4FFXRhp9TJymFld72b'),
-('Philippine Narra', 'Philippine Narra is a tropical tree from the Philippines, appreciated for its hard and reddish wood used in furniture and construction. Its fragrant flowers attract pollinators, and it contributes to shade, biodiversity, and the beauty of tropical landscapes.', 42.00, '/assets/images/trees/narratree.webp', 'price_1S111g4FFXRhp9TJptH7q1bC'),
+('Dipterocarpus', 'Dipterocarpus is a large tropical tree from Southeast Asia, often dominant in primary forests. Its dense wood is used for construction and furniture, and its resin has medicinal properties. It plays a crucial ecological role by offering food and shelter to many species.', 45.00, '/assets/images/trees/dipterocarpus.webp', 'price_1SugPOFE6fL5cooky4Qpatyf'),
+('Burmese Teak', 'Burmese teak is a tropical tree from Southeast Asia, renowned for its dense, resistant, and high-quality wood. Used in shipbuilding, furniture, and decoration, it resists insects and moisture. Its slow growth makes it a precious wood, and it contributes to biodiversity by providing habitat and food for local wildlife.', 38.00, '/assets/images/trees/teck-birman.webp', 'price_1SugPPFE6fL5cookjyL3YFOa'),
+('Philippine Narra', 'Philippine Narra is a tropical tree from the Philippines, appreciated for its hard and reddish wood used in furniture and construction. Its fragrant flowers attract pollinators, and it contributes to shade, biodiversity, and the beauty of tropical landscapes.', 42.00, '/assets/images/trees/narratree.webp', 'price_1SugPPFE6fL5cooknn6odHzW'),
 
 -- South America (Amazon)
-('Brazilian Mahogany', 'Brazilian mahogany is a tropical tree from South America, renowned for its deep red and durable wood. Used in furniture and instruments, it provides food and shelter for wildlife and plays an important role in the biodiversity of tropical forests.', 55.00, '/assets/images/trees/acajou-bresil.webp', 'price_1S112T4FFXRhp9TJjJcOAH0F'),
-('Cecropia', 'Cecropia is a tropical tree from Central and South America, with rapid growth and characteristic large leaves. It serves as refuge and food for many animals and contributes to forest regeneration and biodiversity.', 25.00, '/assets/images/trees/cecropia.webp', 'price_1S112v4FFXRhp9TJK0t8azKz'),
-('Pau-Brasil', 'Pau-Brasil is a tropical tree from Brazil, famous for its red wood historically used in dyeing and cabinet making. It promotes biodiversity, offers shade and habitat for wildlife, and is now protected due to its scarcity.', 48.00, '/assets/images/trees/pau-brasil.webp', 'price_1S113S4FFXRhp9TJ67BMqB0Y'),
+('Brazilian Mahogany', 'Brazilian mahogany is a tropical tree from South America, renowned for its deep red and durable wood. Used in furniture and instruments, it provides food and shelter for wildlife and plays an important role in the biodiversity of tropical forests.', 55.00, '/assets/images/trees/acajou-bresil.webp', 'price_1SugPQFE6fL5cookSQFgfwmE'),
+('Cecropia', 'Cecropia is a tropical tree from Central and South America, with rapid growth and characteristic large leaves. It serves as refuge and food for many animals and contributes to forest regeneration and biodiversity.', 25.00, '/assets/images/trees/cecropia.webp', 'price_1SugPQFE6fL5cookxo0rZnNW'),
+('Pau-Brasil', 'Pau-Brasil is a tropical tree from Brazil, famous for its red wood historically used in dyeing and cabinet making. It promotes biodiversity, offers shade and habitat for wildlife, and is now protected due to its scarcity.', 48.00, '/assets/images/trees/pau-brasil.webp', 'price_1SugPRFE6fL5cookYHCjk0pZ'),
 
 -- North America (boreal forest)
-('Black Spruce', 'Black spruce is a robust conifer, typical of cold and humid northern regions. With its short, dark green needles and brownish cones, it is easily recognizable. It grows slowly but lives very long, making it an essential tree in boreal forests. Its light but strong wood is widely used for construction, paper, and even musical instruments.', 28.00, '/assets/images/trees/conifer.webp', 'price_1S11414FFXRhp9TJ7QYrjJWf'),
-('Trembling Aspen', 'Trembling aspen is a fast-growing tree of temperate regions. Its light leaves create a soft rustling in the wind. It provides wood for construction, habitats for wildlife, and helps in soil stabilization.', 22.00, '/assets/images/trees/peuplier-faux-tremble.webp', 'price_1S114i4FFXRhp9TJfJULdn7b'),
+('Black Spruce', 'Black spruce is a robust conifer, typical of cold and humid northern regions. With its short, dark green needles and brownish cones, it is easily recognizable. It grows slowly but lives very long, making it an essential tree in boreal forests. Its light but strong wood is widely used for construction, paper, and even musical instruments.', 28.00, '/assets/images/trees/conifer.webp', 'price_1SugPRFE6fL5cookxbQjXLVG'),
+('Trembling Aspen', 'Trembling aspen is a fast-growing tree of temperate regions. Its light leaves create a soft rustling in the wind. It provides wood for construction, habitats for wildlife, and helps in soil stabilization.', 22.00, '/assets/images/trees/peuplier-faux-tremble.webp', 'price_1SugPSFE6fL5cookOGWKIAxU'),
 
 -- Australia (bushland)
-('Red Gum Eucalyptus', 'Red Gum Eucalyptus is an Australian tree remarkable for its red bark and aromatic leaves. It produces rich resin used in medicine and industry. Its wood is used for construction and furniture, and it offers habitat and food for wildlife while contributing to biodiversity.', 35.00, '/assets/images/trees/eucalyptus-rouge.webp', 'price_1S115X4FFXRhp9TJDm8Plftc'),
-('Giant Banksia', 'Giant Banksia is an Australian tree with spectacular flowers and rich nectar. It attracts bees and birds, offers habitat to local wildlife, and its wood is sometimes used for construction or crafts. It plays an ecological role in soil regeneration.', 32.00, '/assets/images/trees/banksia-geant.webp', 'price_1S116M4FFXRhp9TJ4ZrelBNX'),
+('Red Gum Eucalyptus', 'Red Gum Eucalyptus is an Australian tree remarkable for its red bark and aromatic leaves. It produces rich resin used in medicine and industry. Its wood is used for construction and furniture, and it offers habitat and food for wildlife while contributing to biodiversity.', 35.00, '/assets/images/trees/eucalyptus-rouge.webp', 'price_1SugPSFE6fL5cookwsf6fP5V'),
+('Giant Banksia', 'Giant Banksia is an Australian tree with spectacular flowers and rich nectar. It attracts bees and birds, offers habitat to local wildlife, and its wood is sometimes used for construction or crafts. It plays an ecological role in soil regeneration.', 32.00, '/assets/images/trees/banksia-geant.webp', 'price_1SugPTFE6fL5cookzbjzIh2b'),
 
 -- Europe (degraded forests)
-('Romanian Oak', 'Romanian oaks are large, robust, and long-lived trees, with characteristic lobed leaves. Their acorns feed many animals and their strong wood is used for construction and furniture. They offer shade, promote biodiversity, and symbolize strength and longevity.', 30.00, '/assets/images/trees/chene-roumanie.webp', 'price_1S116v4FFXRhp9TJ8br7xSUg'),
-('Cork Oak', 'Cork oak is a Mediterranean tree known for its thick bark used to make cork. It lives long, provides shade and habitat, contributes to forest biodiversity, and offers strong wood for certain uses.', 40.00, '/assets/images/trees/chene-liege.webp', 'price_1S117P4FFXRhp9TJAUpn6jOS'),
+('Romanian Oak', 'Romanian oaks are large, robust, and long-lived trees, with characteristic lobed leaves. Their acorns feed many animals and their strong wood is used for construction and furniture. They offer shade, promote biodiversity, and symbolize strength and longevity.', 30.00, '/assets/images/trees/chene-roumanie.webp', 'price_1SugPTFE6fL5cookoJD8DUZI'),
+('Cork Oak', 'Cork oak is a Mediterranean tree known for its thick bark used to make cork. It lives long, provides shade and habitat, contributes to forest biodiversity, and offers strong wood for certain uses.', 40.00, '/assets/images/trees/chene-liege.webp', 'price_1SugPUFE6fL5cookO6QKaA7u'),
 
 -- Africa (Great Green Wall)
-('Balanites', 'Balanites is an African tree adapted to arid regions. Its nutritious fruits are used for human and animal food, its wood is used locally, and it provides shade and shelter, while helping to stabilize dry soils.', 20.00, '/assets/images/trees/balanites.webp', 'price_1S117q4FFXRhp9TJjVAA6sEg'),
-('Prosopis', 'Prosopis is a robust tree of arid regions, often called mesquite. It fixes nitrogen in the soil, produces wood and fodder, offers shade and habitat to wildlife, and helps fight erosion in desert or semi-arid zones.', 18.00, '/assets/images/trees/prosopis.webp', 'price_1S118N4FFXRhp9TJ4lXCt6sG');
+('Balanites', 'Balanites is an African tree adapted to arid regions. Its nutritious fruits are used for human and animal food, its wood is used locally, and it provides shade and shelter, while helping to stabilize dry soils.', 20.00, '/assets/images/trees/balanites.webp', 'price_1SugPUFE6fL5cookrJMvke2P'),
+('Prosopis', 'Prosopis is a robust tree of arid regions, often called mesquite. It fixes nitrogen in the soil, produces wood and fodder, offers shade and habitat to wildlife, and helps fight erosion in desert or semi-arid zones.', 18.00, '/assets/images/trees/prosopis.webp', 'price_1SugPVFE6fL5cookVx6EV0eh');
+
 
 INSERT INTO project (localization_id, name, description, image) VALUES
 (1, 'Brittany Reforestation', ' The Brittany Reforestation project aims to restore endemic forests and bocages, victims of agricultural intensification and storms. By planting local species and promoting natural regeneration, it acts for the preservation of Breton biodiversity, the fight against erosion, and the return of ecological corridors. The involvement of citizens and farmers makes this project a collective and sustainable approach, essential for the resilience of the territory in the face of new climatic challenges.', '/assets/images/projects/reforestation-bretagne.webp'),
@@ -95,6 +96,7 @@ INSERT INTO project (localization_id, name, description, image) VALUES
 -- Africa - Great Green Wall (localization_id 15, 16)
 (15, 'Green Sahel Senegal', 'Green Sahel Senegal mobilizes to re-green arid lands through reforestation of fragile Sahel zones. The project improves soil fertility, promotes water retention, and revives food crops. By raising awareness and involving local communities, it creates a climate conducive to resilience against drought and offers future generations a more prosperous and healthy environment.', '/assets/images/projects/sahel-vert-senegal.webp'),
 (16, 'Mali Reforestation', 'Mali Reforestation gives hope back to desertified regions by restoring forests vital to local life. Through the planting of climate-adapted trees, the project protects soils from erosion, improves water quality, and supports biodiversity. Population involvement guarantees tree maintenance and transmission of good practices, for sustainable resilience against climate change challenges.', '/assets/images/projects/mali-reforestation.webp');
+
 
 INSERT INTO project_tree (project_id, tree_id) VALUES
 -- Reforestation Brittany (France)
@@ -145,3 +147,66 @@ INSERT INTO project_tree (project_id, tree_id) VALUES
 -- Africa - Great Green Wall (project_id 15, 16)
 (15, 17), -- Balanites (tree_id 17)
 (16, 18); -- Prosopis (tree_id 18)
+
+
+-- Initial Orders
+INSERT INTO "order" (user_id, status) VALUES
+(1, 'completed'), -- Jean orders
+(2, 'processing'); -- Marie orders
+
+-- Initial Order Lines
+INSERT INTO order_line (tree_id, order_id, quantity, price) VALUES
+-- Jean orders 5 Oaks and 3 Eucalyptuses
+(1, 1, 5, 15.50), -- 5 Oaks
+(3, 1, 3, 12.00), -- 3 Eucalyptuses
+
+-- Marie orders 2 Baobabs
+(2, 2, 2, 25.00); -- 2 Baobabs
+
+-- New orders for new projects (reduced quantities)
+INSERT INTO "order" (user_id, status) VALUES
+(1, 'completed'),  -- Jean sponsors Amazon
+(2, 'completed'),  -- Marie sponsors Borneo
+(3, 'processing'); -- Admin tests Africa
+
+-- New Order Lines (adjusted quantities)
+INSERT INTO order_line (tree_id, order_id, quantity, price) VALUES
+-- Jean sponsors Amazon rainforest (order_id 3)
+(8, 3, 5, 55.00),   -- 5 Brazilian Mahoganies
+(9, 3, 10, 25.00),  -- 10 Cecropias
+
+-- Marie sponsors Borneo (order_id 4)
+(5, 4, 5, 45.00),   -- 5 Dipterocarpus
+
+-- Admin tests Great Green Wall (order_id 5)
+(17, 5, 15, 20.00), -- 15 Balanites
+(18, 5, 10, 18.00); -- 10 Prosopis
+
+-- Planted Trees
+INSERT INTO planted_tree (project_id, order_line_id) VALUES
+-- Jean's 5 Oaks planted in Brittany
+(1, 1),
+-- Jean's 3 Eucalyptuses planted in Amazon
+(3, 2),
+-- Marie's 2 Baobabs planted in Madagascar
+(2, 3),
+
+-- New planted trees
+-- Jean's Mahoganies planted in Colombia
+(7, 4),
+-- Jean's Cecropias planted in Colombia
+(7, 5),
+-- Marie's Dipterocarpus planted in Borneo
+(4, 6),
+-- Admin's Balanites planted in Senegal
+(15, 7),
+-- Admin's Prosopis planted in Mali
+(16, 8);
+
+-- Payment Transactions
+INSERT INTO payment_transaction (order_id, amount, status, stripe_payment_id) VALUES
+(1, 113.50, 'completed', 'pi_1234567890'),   -- Jean initial
+(2, 50.00, 'completed', 'pi_0987654321'),    -- Marie initial
+(3, 525.00, 'completed', 'pi_amazon_rescue'), -- Jean Amazon
+(4, 225.00, 'completed', 'pi_borneo_emergency'), -- Marie Borneo
+(5, 480.00, 'completed', 'pi_sahel_green');   -- Admin Sahel
