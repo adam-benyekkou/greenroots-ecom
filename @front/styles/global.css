@@ -30,44 +30,6 @@
 	--pad-large: 1rem;
 }
 
-/* Global Image Filter */
-img {
-	/* Apply multiply effect to ALL images as requested */
-	mix-blend-mode: multiply;
-	filter: contrast(110%) brightness(0.95);
-	display: block;
-	/* Removes bottom spacing */
-}
-
-/* Brutalist Card Style Refinement */
-.card,
-.tree-card {
-	background: transparent !important;
-	border: 2px solid var(--color-primary) !important;
-	box-shadow: none !important;
-	border-radius: 0 !important;
-}
-
-.card img,
-.tree-card img {
-	/* Inherits global filter but ensures borders */
-	border-bottom: 2px solid var(--color-primary);
-}
-
-button,
-.button {
-	background: transparent;
-	border: 2px solid var(--color-primary);
-	color: var(--color-primary);
-	font-family: var(--font-body);
-	text-transform: uppercase;
-	border-radius: 0 !important;
-	box-shadow: none !important;
-	padding: var(--pad);
-	cursor: pointer;
-	font-weight: bold;
-}
-
 body {
 	background-color: var(--color-bg);
 	color: var(--color-primary);

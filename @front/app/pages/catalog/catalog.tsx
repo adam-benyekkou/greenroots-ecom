@@ -90,11 +90,11 @@ export default function Catalog(props: Route.ComponentProps) {
 	// Mapping to display continent names (English now)
 	const continentNames: Record<string, string> = {
 		europe: "Europe",
-		asia: "Asia",
-		"north-america": "North America",
-		"south-america": "South America",
-		africa: "Africa",
-		oceania: "Oceania",
+		asie: "Asia",
+		"amerique-nord": "North America",
+		"amerique-sud": "South America",
+		afrique: "Africa",
+		oceanie: "Oceania",
 	};
 
 	const continentName = loaderData.continent
