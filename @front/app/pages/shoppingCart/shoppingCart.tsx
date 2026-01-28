@@ -1,4 +1,4 @@
-import { Link, redirect, useSubmit } from "react-router";
+import { Link, redirect, useSubmit, useNavigation, useActionData } from "react-router";
 import { cartService } from "~/services/cartService";
 import { getSession } from "~/services/sessions.server";
 
@@ -114,8 +114,11 @@ export default function ShoppingCartPage() {
 // table of items in shopping cart
 const ShoppingCartList = () => {
 	const [shoppingCart, { updateItem, removeItem }] = useShoppingCart();
-
 	const submit = useSubmit();
+	const navigation = useNavigation();
+	const actionData = useActionData() as { error?: string } | undefined;
+
+	const isSubmitting = navigation.state === "submitting";
 
 	return (
 		<>
@@ -150,18 +153,25 @@ const ShoppingCartList = () => {
 					</tr>
 				</tfoot>
 			</table>
+
+			{actionData?.error && (
+				<div className="cart-error-message" style={{ color: "red", marginTop: "1rem" }}>
+					{actionData.error}
+				</div>
+			)}
+
 			<div className="validation-button-container">
 				<button
 					className="validation-button"
 					type="button"
+					disabled={isSubmitting}
 					onClick={() => {
 						const formData = new FormData();
 						formData.append("items", JSON.stringify(shoppingCart.items));
 						submit(formData, { method: "post" });
-						//submit({ items: shoppingCart.items }, { method: "post" });
 					}}
 				>
-					Checkout
+					{isSubmitting ? "Processing..." : "Checkout"}
 				</button>
 			</div>
 		</>

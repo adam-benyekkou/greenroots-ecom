@@ -101,19 +101,46 @@ const ordersController = {
 
 			await orderLineModel.createMany(orderLinesData);
 
-			const session = await stripe.checkout.sessions.create({
-				line_items,
-				mode: "payment",
-				payment_intent_data: {
-					metadata: {
-						order_id: order.order_id!
-					}
-				},
-				success_url: `${redirectCheckoutPage}?success=true`,
-				cancel_url: `${redirectCheckoutPage}?canceled=true`,
-			});
+			if (!redirectCheckoutPage) {
+				console.error("REDIRECT_CHECKOUT_PAGE is not defined in environment variables");
+				// Rollback: delete the created order
+				if (order.order_id) {
+					await orderModel.deleteById(order.order_id);
+				}
+				return res.status(500).json({
+					error: "Server configuration error: Missing redirect URL",
+				});
+			}
 
-			if (!session.url) {
+			let session;
+			try {
+				session = await stripe.checkout.sessions.create({
+					line_items,
+					mode: "payment",
+					payment_intent_data: {
+						metadata: {
+							order_id: order.order_id!
+						}
+					},
+					success_url: `${redirectCheckoutPage}?success=true`,
+					cancel_url: `${redirectCheckoutPage}?canceled=true`,
+				});
+			} catch (stripeError) {
+				console.error("Stripe session creation failed:", stripeError);
+				// Rollback: delete the created order
+				if (order.order_id) {
+					await orderModel.deleteById(order.order_id);
+				}
+				return res.status(500).json({
+					error: "Failed to initiate payment provider",
+				});
+			}
+
+			if (!session || !session.url) {
+				// Rollback: delete the created order
+				if (order.order_id) {
+					await orderModel.deleteById(order.order_id);
+				}
 				return res.status(500).json({
 					error: "Failed to create Stripe checkout session",
 				});
