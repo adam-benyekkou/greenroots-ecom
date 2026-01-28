@@ -11,28 +11,8 @@ services:
       - db_data:/var/lib/postgresql/data
       - ./@back/database/migration/create-tables.sql:/docker-entrypoint-initdb.d/01-create-tables.sql
       - ./@back/database/seeders/prod-data.sql:/docker-entrypoint-initdb.d/02-prod-data.sql
-
-  traefik:
-    image: traefik:v2.10
-    container_name: traefik
-    command:
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80"
-      - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
-      - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
-      - "--entrypoints.websecure.address=:443"
-      - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
-      - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
-      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
-    ports:
-      - "80:80"
-      - "443:443"
-      - "8080:8080"
-    volumes:
-      - "./letsencrypt:/letsencrypt"
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    networks:
+      - default
 
   backend:
     image: cavydev/greenroots-backend:latest
@@ -51,8 +31,12 @@ services:
       - STRIPE_PUBLIC_KEY=${STRIPE_PUBLIC_KEY}
       - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
       - REDIRECT_CHECKOUT_PAGE=${REDIRECT_CHECKOUT_PAGE}
+    networks:
+      - default
+      - proxy-network
     labels:
       - "traefik.enable=true"
+      - "traefik.docker.network=proxy-network"
       - "traefik.http.routers.backend.rule=Host(`greenroots.cavydev.com`) && PathPrefix(`/api`)"
       - "traefik.http.routers.backend.entrypoints=websecure"
       - "traefik.http.routers.backend.tls.certresolver=myresolver"
@@ -70,12 +54,20 @@ services:
     environment:
       - VITE_API_URL=${VITE_API_URL}
       - REDIRECT_CHECKOUT_PAGE=${REDIRECT_CHECKOUT_PAGE}
+    networks:
+      - default
+      - proxy-network
     labels:
       - "traefik.enable=true"
+      - "traefik.docker.network=proxy-network"
       - "traefik.http.routers.frontend.rule=Host(`greenroots.cavydev.com`)"
       - "traefik.http.routers.frontend.entrypoints=websecure"
       - "traefik.http.routers.frontend.tls.certresolver=myresolver"
       - "traefik.http.services.frontend.loadbalancer.server.port=3000"
+
+networks:
+  proxy-network:
+    external: true
 
 volumes:
   db_data:
