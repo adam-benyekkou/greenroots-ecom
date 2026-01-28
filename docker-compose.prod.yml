@@ -35,7 +35,7 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
   backend:
-    image: adambenyekkou/greenroots-backend:latest
+    image: cavydev/greenroots-backend:latest
     build:
       context: ./@back
     depends_on:
@@ -59,7 +59,7 @@ services:
       - "traefik.http.services.backend.loadbalancer.server.port=3001"
 
   frontend:
-    image: adambenyekkou/greenroots-frontend:latest
+    image: cavydev/greenroots-frontend:latest
     build:
       context: ./@front
       args:
