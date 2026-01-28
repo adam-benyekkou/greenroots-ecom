@@ -1,46 +1,15 @@
 /* ===================================
-   PAGE PRODUIT ARBRE - ÉCOCONCEPTION
+   PAGE PRODUIT ARBRE - LOW TECH SOLAR
    =================================== */
 
-/* Variables CSS pour cohérence et maintenance */
 :root {
-    --color-primary: #2d5016;
-    --color-primary-light: #4a7c59;
-    --color-secondary: #8fbc8f;
-    --color-accent: #f4a261;
-    --color-success: #2d5016;
-    --color-error: #d63384;
-    --color-warning: #f76707;
-
-    --color-text-primary: #1a1a1a;
-    --color-text-secondary: #666;
-    --color-text-muted: #888;
-
-    --color-bg-primary: #ffffff;
-    --color-bg-secondary: #f8f9fa;
-    --color-bg-accent: #f1f8e9;
-
-    --color-border: #e0e0e0;
-    --color-border-focus: var(--color-primary);
-
+    /* Inherit from global */
     --spacing-xs: 0.25rem;
     --spacing-sm: 0.5rem;
     --spacing-md: 1rem;
     --spacing-lg: 1.5rem;
     --spacing-xl: 2rem;
     --spacing-2xl: 3rem;
-
-    --border-radius-sm: 4px;
-    --border-radius-md: 8px;
-    --border-radius-lg: 12px;
-
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
-    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
-
-    --transition-fast: 0.15s ease;
-    --transition-normal: 0.25s ease;
-    --transition-slow: 0.4s ease;
 }
 
 /* Reset et base */
@@ -53,9 +22,9 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: var(--spacing-md);
-    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
-    line-height: 1.6;
-    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    line-height: 1.4;
+    color: var(--color-primary);
 }
 
 /* ===================================
@@ -103,7 +72,8 @@
 .tree-title {
     font-size: 2.25rem;
     font-weight: 700;
-    color: var(--color-primary); /* Couleur par défaut */
+    color: var(--color-primary);
+    /* Couleur par défaut */
     margin: 0 0 var(--spacing-md) 0;
     line-height: 1.2;
 }
@@ -232,6 +202,7 @@
         opacity: 0;
         transform: translateY(-10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -500,6 +471,7 @@ button:focus-visible {
 
 /* Réduction des mouvements pour utilisateurs sensibles */
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {

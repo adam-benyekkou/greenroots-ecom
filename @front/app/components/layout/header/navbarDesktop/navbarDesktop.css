@@ -87,9 +87,13 @@
 
 /* Link Styles */
 .navlinks>li>a {
-	padding: 0.2rem 0.4rem;
+	padding: var(--pad) var(--pad-large);
+	/* Increased padding */
 	color: var(--color-text);
 	text-decoration: none;
+	font-size: 1.1rem;
+	/* Larger font */
+	display: inline-block;
 }
 
 .navlinks>li>a:hover {

@@ -3,7 +3,8 @@ header {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: var(--pad) var(--pad-large);
+	padding: var(--pad-xlarge) var(--pad-xlarge);
+	/* Doubled padding */
 	background-color: transparent;
 	border-bottom: 2px solid var(--color-primary);
 	margin-bottom: var(--pad-xlarge);
