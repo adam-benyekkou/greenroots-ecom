@@ -3,11 +3,11 @@ header {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: var(--pad) var(--pad-large);
-	background-color: transparent;
-	border-bottom: 2px solid var(--color-primary);
-	margin-bottom: var(--pad-xlarge);
-	font-family: var(--font-body);
+	padding: 0.75rem 1rem;
+	background-color: var(--color-primary);
+	border-bottom: 2px solid var(--color-border);
+	margin-bottom: 2rem;
+    font-family: var(--font-body);
 }
 
 /* Burger menu, only for mobile */
@@ -18,22 +18,25 @@ header {
 /* Logo */
 .header-logo img {
 	width: auto;
-	/* No filter, pure image */
-	mix-blend-mode: multiply;
+    filter: grayscale(100%) contrast(200%); /* Dithered logo */
 }
 
 /* Account + Cart */
 .header-account-cart {
 	display: flex;
 	gap: 1rem;
-	align-items: center;
+    align-items: center;
 }
 
 .header-account-cart img {
 	height: 2rem;
 	width: auto;
 	cursor: pointer;
-	/* No filter */
+    filter: grayscale(100%);
+}
+
+.navbar-desktop {
+	display: none;
 }
 
 /* Account menu container */
@@ -58,9 +61,9 @@ header {
 	position: absolute;
 	top: 100%;
 	right: 0;
-	background-color: var(--color-bg);
-	border: 1px solid var(--color-primary);
-	box-shadow: none;
+	background-color: white;
+	border: 2px solid var(--color-border);
+    box-shadow: 4px 4px 0 0 var(--color-border);
 	padding: 0;
 	min-width: 160px;
 	z-index: 999;
@@ -68,24 +71,24 @@ header {
 	flex-direction: column;
 	list-style: none;
 	margin: 0;
-	border-radius: 0;
+    border-radius: 0;
 }
 
 .account-submenu li {
 	margin: 0;
-	border-bottom: 1px solid var(--color-primary);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .account-submenu li:last-child {
-	border-bottom: none;
+    border-bottom: none;
 }
 
 .account-submenu li a,
 .account-submenu li button {
 	display: block;
-	padding: var(--pad);
+	padding: 0.5rem 1rem;
 	text-decoration: none;
-	color: var(--color-primary);
+	color: var(--color-text);
 	background: none;
 	border: none;
 	cursor: pointer;
@@ -97,15 +100,15 @@ header {
 
 .account-submenu li a:hover,
 .account-submenu li button:hover {
-	background-color: transparent;
-	color: var(--color-sub);
-	text-decoration: none;
+	background-color: #ffffed;
+    color: var(--color-text);
+    text-decoration: underline;
 }
 
 /* Responsive: tablet and desktop */
 @media (min-width: 768px) {
 	header {
-		padding: var(--pad) var(--pad-xlarge);
+		padding: 1rem 2rem;
 	}
 
 	.navbar-mobile {
