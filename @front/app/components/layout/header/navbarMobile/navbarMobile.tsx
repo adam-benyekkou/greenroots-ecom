@@ -8,16 +8,16 @@ function NavbarMobile({ className }: { className?: string }) {
 	const [open, setOpen] = useState(false);
 
 	const navLinks = [
-		{ to: "/", label: "Accueil" },
+		{ to: "/", label: "Home" },
 		{
 			to: "/catalog",
-			label: "Catalogue",
+			label: "Catalog",
 			subLinks: continents.map((continent) => ({
 				label: continent.label,
 				to: `/catalog/${continent.value}`,
 			})),
 		},
-		{ to: "/about", label: "Notre pépinière" },
+		{ to: "/about", label: "About Us" },
 	];
 
 	return (
@@ -27,7 +27,7 @@ function NavbarMobile({ className }: { className?: string }) {
 				onClick={() => {
 					setOpen((previousOpen) => !previousOpen);
 				}}
-				aria-label="Ouvrir le menu"
+				aria-label="Open menu"
 				className="toggle-btn"
 			>
 				<span className="menu-icon">{open ? "✖" : "☰"}</span>
@@ -46,7 +46,7 @@ function NavbarMobile({ className }: { className?: string }) {
 										<ul className="mobile-submenu">
 											<li>
 												<Link to="/catalog" onClick={() => setOpen(false)} className="mobile-submenu-link">
-													Voir tout
+													See all
 												</Link>
 											</li>
 											{link.subLinks.map((sub) => (

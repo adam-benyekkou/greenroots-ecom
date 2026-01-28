@@ -33,7 +33,7 @@ export function Header(props: { user: User | null }) {
 				{/* account and cart */}
 				<div className="header-account-cart">
 					<Link to="/shopping-cart">
-						<img src={iconCart} alt="Panier" />
+						<img src={iconCart} alt="Cart" />
 					</Link>
 					<ul className="navlinks">
 						<li>
@@ -46,9 +46,9 @@ export function Header(props: { user: User | null }) {
 									className="account-trigger"
 									onClick={toggleMenu}
 									type="submit"
-									aria-label="Ouvrir le menu utilisateur"
+									aria-label="Open user menu"
 								>
-									<img src={iconAccount} alt="Compte personnel" />
+									<img src={iconAccount} alt="User account" />
 								</button>
 								{isMenuOpen && (
 									<ul className="account-submenu">

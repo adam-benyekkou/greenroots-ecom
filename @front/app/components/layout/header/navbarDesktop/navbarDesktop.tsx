@@ -4,16 +4,16 @@ import { continents } from "~/continents";
 
 function NavbarDesktop({ className }: { className?: string }) {
 	const navLinks = [
-		{ to: "/", label: "Accueil" },
+		{ to: "/", label: "Home" },
 		{
 			to: "/catalog",
-			label: "Catalogue",
+			label: "Catalog",
 			subLinks: continents.map((continent) => ({
 				label: continent.label,
 				to: `/catalog/${continent.value}`,
 			})),
 		},
-		{ to: "/about", label: "Notre pépinière" },
+		{ to: "/about", label: "About Us" },
 	];
 
 	return (
@@ -25,7 +25,7 @@ function NavbarDesktop({ className }: { className?: string }) {
 							<Link to={link.to} className="menu-trigger">{link.label}</Link>
 							<ul className="submenu">
 								<li key="/catalog">
-									<Link to="/catalog">Voir tout</Link>
+									<Link to="/catalog">See all</Link>
 								</li>
 								{link.subLinks.map((subLink) => (
 									<li key={subLink.to}>
