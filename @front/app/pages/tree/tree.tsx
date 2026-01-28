@@ -65,16 +65,16 @@ export default function Tree(props: Route.ComponentProps) {
 			const result = await cartService.addItem(tree.tree_id, quantity);
 
 			if (result.success) {
-				setCartMessage(`${quantity} ${tree.name}(s) ajouté(s) au panier !`);
+				setCartMessage(`${quantity} ${tree.name}(s) added to cart!`);
 
 				// Message de succès disparaît après 3 secondes
 				setTimeout(() => setCartMessage(null), 3000);
 			} else {
-				setCartError(result.error || "Erreur lors de l'ajout au panier");
+				setCartError(result.error || "Error adding element to cart");
 			}
 		} catch (error) {
-			console.error("Erreur ajout panier:", error);
-			setCartError("Erreur de connexion. Veuillez réessayer.");
+			console.error("Cart error:", error);
+			setCartError("Unknown Error");
 		} finally {
 			setIsAddingToCart(false);
 		}

@@ -40,10 +40,12 @@ export default function SuccessPage() {
 						Veuillez réessayer.
 					</p>
 					<Link className="error-success-link" to="/shopping-cart">
-						Retour au panier
+						Back to cart
 					</Link>
 				</>
 			)}
 		</main>
 	);
 }
+
+```
