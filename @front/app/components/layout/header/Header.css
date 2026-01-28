@@ -4,14 +4,139 @@ header {
 	align-items: center;
 	justify-content: space-between;
 	padding: 0.75rem 1rem;
-	background-color: #fff;
-	position: sticky;
-	top: 0;
-	z-index: 1000;
-	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-	background-color: var(--pearl);
-	border-bottom: 1px solid var(--light-green);
+	background-color: var(--color-primary);
+	border-bottom: 2px solid var(--color-border);
 	margin-bottom: 2rem;
+    font-family: var(--font-body);
+}
+
+/* Burger menu, only for mobile */
+.navbar-mobile {
+	display: block;
+}
+
+/* Logo */
+.header-logo img {
+	width: auto;
+    filter: grayscale(100%) contrast(200%); /* Dithered logo */
+}
+
+/* Account + Cart */
+.header-account-cart {
+	display: flex;
+	gap: 1rem;
+    align-items: center;
+}
+
+.header-account-cart img {
+	height: 2rem;
+	width: auto;
+	cursor: pointer;
+    filter: grayscale(100%);
+}
+
+.navbar-desktop {
+	display: none;
+}
+
+/* Account menu container */
+.account-menu-container {
+	position: relative;
+	align-self: center;
+}
+
+.account-trigger {
+	all: unset;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+.account-trigger img {
+	height: 2rem;
+	width: auto;
+}
+
+.account-submenu {
+	position: absolute;
+	top: 100%;
+	right: 0;
+	background-color: white;
+	border: 2px solid var(--color-border);
+    box-shadow: 4px 4px 0 0 var(--color-border);
+	padding: 0;
+	min-width: 160px;
+	z-index: 999;
+	display: flex;
+	flex-direction: column;
+	list-style: none;
+	margin: 0;
+    border-radius: 0;
+}
+
+.account-submenu li {
+	margin: 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.account-submenu li:last-child {
+    border-bottom: none;
+}
+
+.account-submenu li a,
+.account-submenu li button {
+	display: block;
+	padding: 0.5rem 1rem;
+	text-decoration: none;
+	color: var(--color-text);
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: inherit;
+	font-family: var(--font-body);
+	width: 100%;
+	text-align: left;
+}
+
+.account-submenu li a:hover,
+.account-submenu li button:hover {
+	background-color: #ffffed;
+    color: var(--color-text);
+    text-decoration: underline;
+}
+
+/* Responsive: tablet and desktop */
+@media (min-width: 768px) {
+	header {
+		padding: 1rem 2rem;
+	}
+
+	.navbar-mobile {
+		display: none;
+	}
+
+	.header-logo {
+		order: 1;
+	}
+
+	.navbar-desktop {
+		display: block;
+		order: 2;
+		display: flex;
+		align-items: center;
+		height: 100%;
+	}
+
+	.navbar-desktop ul {
+		box-shadow: none;
+		display: flex;
+		gap: 3rem;
+		list-style-type: none;
+	}
+
+	.header-account-cart {
+		order: 3;
+	}
 }
 
 /* Burger menu, only for mobile */

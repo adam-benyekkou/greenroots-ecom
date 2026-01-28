@@ -1,14 +1,141 @@
 .tree-card {
-	background: white;
-	border-radius: 12px;
-	box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
-	overflow: hidden;
-	transition: all 0.3s ease;
-	border-top: 4px solid var(--light-green);
-	position: relative;
+	background: transparent;
+	border: 2px solid var(--color-border);
+	padding: 0;
+	margin: 0 auto;
 	width: 100%;
-	max-width: 320px; /* Fixed maximum width for cards */
-	margin: 0 auto; /* Center the card if container is wider */
+	max-width: 320px;
+	position: relative;
+	border-radius: 0;
+	box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.1);
+	/* Slight offset shadow */
+}
+
+/* Image Dithering */
+.tree-card img {
+	width: 100%;
+	height: 200px;
+	object-fit: cover;
+	display: block;
+	filter: grayscale(100%) contrast(140%) brightness(0.95);
+	image-rendering: pixelated;
+	border-bottom: 2px solid var(--color-border);
+}
+
+/* Content Layout */
+.tree-card-text-content {
+	padding: 1rem;
+}
+
+.tree-card-name-price h3 {
+	margin: 0 0 0.5rem 0;
+	font-size: 1.2rem;
+	color: var(--color-text);
+	font-family: var(--font-heading);
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.tree-card-name-price p {
+	font-family: var(--font-body);
+	font-size: 1rem;
+	font-weight: bold;
+}
+
+.tree-name-link {
+	text-decoration: underline;
+}
+
+.tree-name-link:hover {
+	background: transparent;
+	opacity: 0.7;
+}
+
+/* Messages */
+.cart-error-message,
+.cart-success-message {
+	border: 1px solid var(--color-border);
+	background: white;
+	padding: 0.5rem;
+	margin: 0.5rem 0;
+	font-family: var(--font-body);
+	font-size: 0.8rem;
+	border-radius: 0;
+}
+
+.cart-error-message {
+	color: red;
+	border-color: red;
+}
+
+.cart-success-message {
+	color: green;
+	border-color: green;
+}
+
+
+/* Form Elements */
+.tree-card-add-cart {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-top: 1rem;
+	padding-top: 1rem;
+	border-top: 2px solid var(--color-border);
+}
+
+.add-cart-button {
+	background: white;
+	color: var(--color-text);
+	border: 2px solid var(--color-border);
+	border-radius: 0;
+	padding: 0.5rem 1rem;
+	font-family: var(--font-body);
+	text-transform: uppercase;
+	cursor: pointer;
+	flex: 1;
+	font-weight: bold;
+	box-shadow: 2px 2px 0 0 var(--color-border);
+}
+
+.add-cart-button:hover:enabled {
+	transform: translate(-1px, -1px);
+	box-shadow: 4px 4px 0 0 var(--color-border);
+	background: #ffffed;
+}
+
+.add-cart-button:active:enabled {
+	transform: translate(2px, 2px);
+	box-shadow: 0 0 0 0 var(--color-border);
+}
+
+.add-cart-button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+	box-shadow: none;
+}
+
+/* Localisation & Project */
+.tree-card-localization-project {
+	border-top: 1px dashed var(--color-text);
+	border-bottom: 1px dashed var(--color-text);
+	padding: 0.5rem 0;
+	margin: 1rem 0;
+}
+
+.tree-card-localization,
+.tree-card-project {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.tree-card-localization img,
+.tree-card-project img {
+	width: 16px !important;
+	height: 16px !important;
+	border: none !important;
+	filter: grayscale(100%);
 }
 
 .tree-card:hover {
@@ -71,14 +198,16 @@
 	margin-bottom: 1rem;
 	display: flex;
 	flex-direction: column;
-	gap: 0.1rem !important; /* Force override */
+	gap: 0.1rem !important;
+	/* Force override */
 }
 
 .tree-card .tree-card-text-content .tree-card-localization,
 .tree-card .tree-card-text-content .tree-card-project {
 	display: flex;
 	align-items: center;
-	gap: 0.2rem !important; /* Force override */
+	gap: 0.2rem !important;
+	/* Force override */
 }
 
 .tree-card .tree-card-text-content .tree-card-localization img,
@@ -234,7 +363,8 @@
 
 	.add-cart-button {
 		padding: 0.8rem 1rem;
-		min-height: 48px; /* Standard tactile */
+		min-height: 48px;
+		/* Standard tactile */
 	}
 }
 

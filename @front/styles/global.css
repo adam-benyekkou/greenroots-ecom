@@ -16,6 +16,18 @@
 	--light-red: #eeded2;
 	--light-blue: #cce7f0;
 	--light-brown: #ebeed2;
+	/* Solar Theme Colors */
+	--color-primary: #ffdd33;
+	/* Solar Yellow / Sand */
+	--color-text: #1a1a1a;
+	/* High contrast black */
+	--color-accent: #e63946;
+	/* Optional accent */
+	--color-border: #000000;
+
+	/* Typography */
+	--font-body: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+	--font-heading: "Times New Roman", Times, serif;
 
 	/* Couleurs continents */
 	--europe-color: #4D834C;
@@ -33,8 +45,11 @@
 }
 
 body {
-	font-family: sans-serif;
-	background-color: var(--pearl);
+	background-color: var(--color-primary);
+	color: var(--color-text);
+	font-family: var(--font-body);
+	line-height: 1.6;
+	padding: 1rem;
 }
 
 main {
