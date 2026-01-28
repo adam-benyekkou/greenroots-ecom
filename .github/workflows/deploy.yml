@@ -90,6 +90,28 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Validate Secrets
+        run: |
+          missing_secrets=""
+          if [ -z "${{ secrets.POSTGRES_DB }}" ]; then missing_secrets="$missing_secrets POSTGRES_DB"; fi
+          if [ -z "${{ secrets.POSTGRES_USER }}" ]; then missing_secrets="$missing_secrets POSTGRES_USER"; fi
+          if [ -z "${{ secrets.POSTGRES_PASSWORD }}" ]; then missing_secrets="$missing_secrets POSTGRES_PASSWORD"; fi
+          if [ -z "${{ secrets.DATABASE_URL }}" ]; then missing_secrets="$missing_secrets DATABASE_URL"; fi
+          if [ -z "${{ secrets.STRIPE_PUBLIC_KEY }}" ]; then missing_secrets="$missing_secrets STRIPE_PUBLIC_KEY"; fi
+          if [ -z "${{ secrets.STRIPE_SECRET_KEY }}" ]; then missing_secrets="$missing_secrets STRIPE_SECRET_KEY"; fi
+          if [ -z "${{ secrets.REDIRECT_CHECKOUT_PAGE }}" ]; then missing_secrets="$missing_secrets REDIRECT_CHECKOUT_PAGE"; fi
+          if [ -z "${{ secrets.SSH_HOST }}" ]; then missing_secrets="$missing_secrets SSH_HOST"; fi
+          if [ -z "${{ secrets.SSH_USER }}" ]; then missing_secrets="$missing_secrets SSH_USER"; fi
+          if [ -z "${{ secrets.SSH_KEY }}" ]; then missing_secrets="$missing_secrets SSH_KEY"; fi
+          
+          if [ -n "$missing_secrets" ]; then
+            echo "❌ CRITICAL ERROR: The following GitHub Secrets are missing or empty: $missing_secrets"
+            echo "Please go to Settings > Secrets and variables > Actions and add them."
+            exit 1
+          else
+            echo "✅ All required secrets are present."
+          fi
+
       - name: Deploy using ssh
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
