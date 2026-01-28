@@ -24,7 +24,7 @@ const mockOrders: Order[] = [
         id: 1,
         number: "CMD-2024-001",
         date: "15/08/2024",
-        status: "En cours",
+        status: "Processing",
         total: "89.50€",
         items: [
             { product: "Chêne - Reforestation Bretagne", quantity: 2, unitPrice: "15.50€", totalPrice: "31.00€" },
@@ -35,7 +35,7 @@ const mockOrders: Order[] = [
         id: 2,
         number: "CMD-2024-002",
         date: "12/08/2024",
-        status: "Livré",
+        status: "Delivered",
         total: "125.00€",
         items: [
             { product: "Baobab - Sauvegarde Baobabs", quantity: 5, unitPrice: "25.00€", totalPrice: "125.00€" }
@@ -45,7 +45,7 @@ const mockOrders: Order[] = [
         id: 3,
         number: "CMD-2024-003",
         date: "10/08/2024",
-        status: "En préparation",
+        status: "Processing",
         total: "135.00€",
         items: [
             { product: "Palissandre - Sauvegarde Baobabs", quantity: 3, unitPrice: "45.00€", totalPrice: "135.00€" }
@@ -55,7 +55,7 @@ const mockOrders: Order[] = [
         id: 4,
         number: "CMD-2024-004",
         date: "08/08/2024",
-        status: "Annulé",
+        status: "Cancelled",
         total: "90.00€",
         items: [
             { product: "Dipterocarpus - Bornéo Emergency", quantity: 2, unitPrice: "45.00€", totalPrice: "90.00€" }
@@ -117,7 +117,7 @@ const mockOrders: Order[] = [
         id: 10,
         number: "CMD-2024-010",
         date: "22/07/2024",
-        status: "En cours",
+        status: "Processing",
         total: "140.00€",
         items: [
             { product: "Chêne-liège - Montado Portugais", quantity: 2, unitPrice: "40.00€", totalPrice: "80.00€" },
@@ -145,7 +145,7 @@ const OrderItem: React.FC<{ order: Order; onViewDetails: (order: Order) => void 
                     onClick={() => onViewDetails(order)}
                     className="order-details-btn"
                 >
-                    Voir le détail
+                    See details
                 </button>
             </div>
         </div>
@@ -196,6 +196,8 @@ const OrdersList: React.FC<{
 };
 
 // Composant détail d'une commande
+const OrderDetail: React.FC<{ order: Order; onBack: () => void }> = ({ order, onBack }) => (
+    <div className="order-detail">
         <div className="order-detail-header">
             <h1 className="orders-title">My Orders</h1>
             <button onClick={onBack} className="back-btn">
@@ -291,4 +293,3 @@ const Orders: React.FC = () => {
 };
 
 export default Orders;
-```
