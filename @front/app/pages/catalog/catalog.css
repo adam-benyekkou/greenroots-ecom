@@ -13,6 +13,50 @@ main h1 {
 	font-size: clamp(1.8rem, 4vw, 2.5rem);
 	color: var(--dark-green);
 	position: relative;
+	transition: color 0.3s ease;
+}
+
+/* Continent Colors for Title */
+main h1[data-continent="asia"] {
+	color: var(--asia-color);
+}
+main h1[data-continent="asia"]::after {
+	background: var(--asia-color);
+}
+
+main h1[data-continent="north-america"] {
+	color: var(--north-america-color);
+}
+main h1[data-continent="north-america"]::after {
+	background: var(--north-america-color);
+}
+
+main h1[data-continent="south-america"] {
+	color: var(--south-america-color);
+}
+main h1[data-continent="south-america"]::after {
+	background: var(--south-america-color);
+}
+
+main h1[data-continent="africa"] {
+	color: var(--africa-color);
+}
+main h1[data-continent="africa"]::after {
+	background: var(--africa-color);
+}
+
+main h1[data-continent="oceania"] {
+	color: var(--australia-color);
+}
+main h1[data-continent="oceania"]::after {
+	background: var(--australia-color);
+}
+
+main h1[data-continent="europe"] {
+	color: var(--europe-color);
+}
+main h1[data-continent="europe"]::after {
+	background: var(--europe-color);
 }
 
 main h1::after {

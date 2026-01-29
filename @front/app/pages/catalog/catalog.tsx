@@ -107,7 +107,7 @@ export default function Catalog(props: Route.ComponentProps) {
 
 	return (
 		<main>
-			<h1>{pageTitle}</h1>
+			<h1 data-continent={loaderData.continent}>{pageTitle}</h1>
 
 			<div className="tree-card-container">
 				{loaderData.trees.length > 0 ? (

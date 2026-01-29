@@ -12,7 +12,7 @@
 }
 
 /* Chaque li en ligne */
-.navlinks > li {
+.navlinks>li {
 	position: relative;
 }
 
@@ -76,28 +76,28 @@
 	transition: color 0.2s ease;
 }
 
-/* COULEURS CONTINENTS - Adaptées aux URLs françaises */
+/* COULEURS CONTINENTS - English URLs */
 .submenu li a[href*="europe"] {
 	color: var(--europe-color);
 }
 
-.submenu li a[href*="asie"] {
+.submenu li a[href*="asia"] {
 	color: var(--asia-color);
 }
 
-.submenu li a[href*="amerique-nord"] {
+.submenu li a[href*="north-america"] {
 	color: var(--north-america-color);
 }
 
-.submenu li a[href*="amerique-sud"] {
+.submenu li a[href*="south-america"] {
 	color: var(--south-america-color);
 }
 
-.submenu li a[href*="afrique"] {
+.submenu li a[href*="africa"] {
 	color: var(--africa-color);
 }
 
-.submenu li a[href*="australie"] {
+.submenu li a[href*="oceania"] {
 	color: var(--australia-color);
 }
 
@@ -106,23 +106,23 @@
 	color: var(--europe-hover);
 }
 
-.submenu li a[href*="asie"]:hover {
+.submenu li a[href*="asia"]:hover {
 	color: var(--asia-hover);
 }
 
-.submenu li a[href*="amerique-nord"]:hover {
+.submenu li a[href*="north-america"]:hover {
 	color: var(--north-america-hover);
 }
 
-.submenu li a[href*="amerique-sud"]:hover {
+.submenu li a[href*="south-america"]:hover {
 	color: var(--south-america-hover);
 }
 
-.submenu li a[href*="afrique"]:hover {
+.submenu li a[href*="africa"]:hover {
 	color: var(--africa-hover);
 }
 
-.submenu li a[href*="australie"]:hover {
+.submenu li a[href*="oceania"]:hover {
 	color: var(--australia-hover);
 }
 
@@ -136,12 +136,12 @@
 }
 
 /* Style pour les liens normaux */
-.navlinks > li > a {
+.navlinks>li>a {
 	padding: 0.2rem 0.4rem;
 	text-decoration: none;
 	transition: color 0.2s ease;
 }
 
-.navlinks > li > a:hover {
+.navlinks>li>a:hover {
 	color: var(--dark-grey);
 }
