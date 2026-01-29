@@ -80,11 +80,36 @@ export default function Tree(props: Route.ComponentProps) {
 		}
 	};
 
+	// Determine continent based on localization (Same logic as TreeCard for consistency)
+	const getContinent = (location: string | undefined): string => {
+		if (!location) return 'Europe';
+		const locationLower = location.toLowerCase();
+		const locationToContinentMap: Record<string, string> = {
+			'france': 'Europe', 'madagascar': 'Africa', 'brazil': 'South America',
+			'indonesia': 'Asia', 'myanmar': 'Asia', 'philippines': 'Asia',
+			'colombia': 'South America', 'peru': 'South America', 'bolivia': 'South America',
+			'canada': 'North America', 'usa': 'North America', 'australia': 'Australia',
+			'romania': 'Europe', 'portugal': 'Europe', 'senegal': 'Africa', 'mali': 'Africa',
+		};
+		const continent = locationToContinentMap[locationLower];
+		if (continent) return continent;
+
+		if (locationLower.includes('europe')) return 'Europe';
+		if (locationLower.includes('asia')) return 'Asia';
+		if (locationLower.includes('north america')) return 'North America';
+		if (locationLower.includes('south america')) return 'South America';
+		if (locationLower.includes('africa')) return 'Africa';
+		if (locationLower.includes('australia')) return 'Australia';
+		return 'Europe';
+	};
+
+	const continent = getContinent(project?.localization?.country);
+
 	return (
 		<main className="tree-page">
 			{/* Section principale : produit */}
 			<section className="tree-product">
-				<div className="tree-image-container">
+				<div className="tree-image-container" data-continent={continent}>
 					<img
 						src={tree.image}
 						alt={`${tree.name} - Arbre à parrainer`}

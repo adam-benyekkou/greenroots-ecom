@@ -7,8 +7,10 @@
 	border-top: 4px solid var(--light-green);
 	position: relative;
 	width: 100%;
-	max-width: 320px; /* Fixed maximum width for cards */
-	margin: 0 auto; /* Center the card if container is wider */
+	max-width: 320px;
+	/* Fixed maximum width for cards */
+	margin: 0 auto;
+	/* Center the card if container is wider */
 }
 
 .tree-card:hover {
@@ -16,12 +18,68 @@
 	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
 }
 
-/* Image de l'arbre */
-.tree-card img {
+/* Image styled with retro effect */
+.tree-image-container {
+	position: relative;
 	width: 100%;
 	height: 200px;
+	overflow: hidden;
+}
+
+.tree-image-container img {
+	width: 100%;
+	height: 100%;
 	object-fit: cover;
 	display: block;
+	filter: grayscale(100%) contrast(1.1);
+	transition: all 0.3s ease;
+}
+
+/* Color Tint Overlay */
+.tree-image-container::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	mix-blend-mode: multiply;
+	/* Creates the duotone effect */
+	opacity: 0.8;
+	pointer-events: none;
+	transition: background-color 0.3s ease;
+}
+
+/* Checkered Grain Effect */
+.tree-image-container::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image:
+		radial-gradient(var(--light-grey) 15%, transparent 16%),
+		radial-gradient(var(--light-grey) 15%, transparent 16%);
+	background-size: 4px 4px;
+	background-position: 0 0, 2px 2px;
+	opacity: 0.3;
+	z-index: 2;
+	pointer-events: none;
+	mix-blend-mode: overlay;
+}
+
+/* Hover effects */
+.tree-card:hover .tree-image-container img {
+	transform: scale(1.05);
+	/* Slight zoom on hover */
+	filter: grayscale(0%) contrast(1);
+	/* Reveal full color on hover */
+}
+
+.tree-card:hover .tree-image-container::after {
+	opacity: 0;
+	/* Hide tint on hover */
 }
 
 /* Contenu texte */
@@ -71,14 +129,16 @@
 	margin-bottom: 1rem;
 	display: flex;
 	flex-direction: column;
-	gap: 0.1rem !important; /* Force override */
+	gap: 0.1rem !important;
+	/* Force override */
 }
 
 .tree-card .tree-card-text-content .tree-card-localization,
 .tree-card .tree-card-text-content .tree-card-project {
 	display: flex;
 	align-items: center;
-	gap: 0.2rem !important; /* Force override */
+	gap: 0.2rem !important;
+	/* Force override */
 }
 
 .tree-card .tree-card-text-content .tree-card-localization img,
@@ -175,6 +235,10 @@
 	border-top-color: var(--europe-color);
 }
 
+.tree-card[data-continent="Europe"] .tree-image-container::after {
+	background-color: var(--europe-color);
+}
+
 .tree-card[data-continent="Europe"] .tree-card-name-price h3 {
 	color: var(--europe-color);
 }
@@ -182,6 +246,10 @@
 /* Asie - Rouge-orange */
 .tree-card[data-continent="Asia"] {
 	border-top-color: var(--asia-color);
+}
+
+.tree-card[data-continent="Asia"] .tree-image-container::after {
+	background-color: var(--asia-color);
 }
 
 .tree-card[data-continent="Asia"] .tree-card-name-price h3 {
@@ -193,6 +261,10 @@
 	border-top-color: var(--north-america-color);
 }
 
+.tree-card[data-continent="North America"] .tree-image-container::after {
+	background-color: var(--north-america-color);
+}
+
 .tree-card[data-continent="North America"] .tree-card-name-price h3 {
 	color: var(--north-america-color);
 }
@@ -200,6 +272,10 @@
 /* Amérique du Sud - Orange vif */
 .tree-card[data-continent="South America"] {
 	border-top-color: var(--south-america-color);
+}
+
+.tree-card[data-continent="South America"] .tree-image-container::after {
+	background-color: var(--south-america-color);
 }
 
 .tree-card[data-continent="South America"] .tree-card-name-price h3 {
@@ -211,6 +287,10 @@
 	border-top-color: var(--africa-color);
 }
 
+.tree-card[data-continent="Africa"] .tree-image-container::after {
+	background-color: var(--africa-color);
+}
+
 .tree-card[data-continent="Africa"] .tree-card-name-price h3 {
 	color: var(--africa-color);
 }
@@ -218,6 +298,10 @@
 /* Océanie - Violet */
 .tree-card[data-continent="Australia"] {
 	border-top-color: var(--australia-color);
+}
+
+.tree-card[data-continent="Australia"] .tree-image-container::after {
+	background-color: var(--australia-color);
 }
 
 .tree-card[data-continent="Australia"] .tree-card-name-price h3 {
@@ -234,18 +318,19 @@
 
 	.add-cart-button {
 		padding: 0.8rem 1rem;
-		min-height: 48px; /* Standard tactile */
+		min-height: 48px;
+		/* Standard tactile */
 	}
 }
 
 @media (max-width: 600px) and (min-width: 481px) {
-	.tree-card img {
+	.tree-image-container {
 		height: 180px;
 	}
 }
 
 @media (max-width: 480px) {
-	.tree-card img {
+	.tree-image-container {
 		height: 160px;
 	}
 
@@ -256,7 +341,7 @@
 }
 
 @media (max-width: 320px) {
-	.tree-card img {
+	.tree-image-container {
 		height: 140px;
 	}
 }

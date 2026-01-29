@@ -107,7 +107,9 @@ function TreeCard({
             onSubmit={handleAddToCart}
             data-continent={continent}
         >
-            <img src={image} alt={`${name} - Tree from ${localization}`} />
+            <div className="tree-image-container">
+                <img src={image} alt={`${name} - Tree from ${localization}`} />
+            </div>
             <div className="tree-card-text-content">
                 <div className="tree-card-name-price">
                     <Link to={`/tree/${tree_id}`} className="tree-name-link">

@@ -70,30 +70,95 @@
     align-items: start;
 }
 
-/* Image du produit */
+/* Image du produit - Retro Effect */
 .tree-image-container {
     position: relative;
     border-radius: var(--border-radius-lg);
     overflow: hidden;
     background: var(--color-bg-secondary);
     box-shadow: var(--shadow-md);
+    aspect-ratio: 4/3;
 }
 
 .tree-image {
     width: 100%;
-    height: auto;
-    aspect-ratio: 4/3;
+    height: 100%;
     object-fit: cover;
     transition: transform var(--transition-slow);
+    filter: grayscale(100%) contrast(1.1);
+    /* Force grayscale */
 }
 
-.tree-image:hover {
+/* Checkered Grain Effect */
+.tree-image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(var(--light-grey) 15%, transparent 16%),
+        radial-gradient(var(--light-grey) 15%, transparent 16%);
+    background-size: 4px 4px;
+    background-position: 0 0, 2px 2px;
+    opacity: 0.3;
+    z-index: 2;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+}
+
+/* Color Tint Overlay */
+.tree-image-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: multiply;
+    /* Duotone effect */
+    opacity: 0.8;
+    pointer-events: none;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effects */
+.tree-image-container:hover .tree-image {
     transform: scale(1.02);
+    filter: grayscale(0%) contrast(1);
+    /* Reveal full color on hover */
 }
 
-/* Détails du produit */
-.tree-details {
-    padding: var(--spacing-md) 0;
+.tree-image-container:hover::after {
+    opacity: 0;
+    /* Hide tint on hover */
+}
+
+
+/* Continent Tint Mappings */
+.tree-image-container[data-continent="Europe"]::after {
+    background-color: var(--europe-color);
+}
+
+.tree-image-container[data-continent="Asia"]::after {
+    background-color: var(--asia-color);
+}
+
+.tree-image-container[data-continent="North America"]::after {
+    background-color: var(--north-america-color);
+}
+
+.tree-image-container[data-continent="South America"]::after {
+    background-color: var(--south-america-color);
+}
+
+.tree-image-container[data-continent="Africa"]::after {
+    background-color: var(--africa-color);
+}
+
+.tree-image-container[data-continent="Australia"]::after {
+    background-color: var(--australia-color);
 }
 
 .tree-header-info {
@@ -103,7 +168,8 @@
 .tree-title {
     font-size: 2.25rem;
     font-weight: 700;
-    color: var(--color-primary); /* Couleur par défaut */
+    color: var(--color-primary);
+    /* Couleur par défaut */
     margin: 0 0 var(--spacing-md) 0;
     line-height: 1.2;
 }
@@ -232,6 +298,7 @@
         opacity: 0;
         transform: translateY(-10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -500,6 +567,7 @@ button:focus-visible {
 
 /* Réduction des mouvements pour utilisateurs sensibles */
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
