@@ -35,9 +35,9 @@ graph TD
     Back -->|Emails| SMTP[SMTP Server]
 ```
 
-# CI/CD & Testing
+## CI/CD & Testing
 
-## Workflows
+### Workflows
 
 * **PR Checks**: Runs linting, type-checking, and unit tests on every Pull Request.
 * **E2E Tests**: Runs Playwright end-to-end tests nightly and on `master` pushes.
@@ -46,14 +46,14 @@ graph TD
 
 ## Running Tests Locally
 
-### Backend
+### Backend Tests
 
 ```bash
 cd @back
 npm test                # Run unit/integration tests
 ```
 
-### Frontend
+### Frontend Tests
 
 ```bash
 cd @front
@@ -61,7 +61,7 @@ npm run test:unit       # Run unit tests (Windows)
 npm run test:e2e        # Run e2e tests
 ```
 
-# Docker Commands
+## Docker Commands
 
 This project uses Docker Compose with different configurations for development and production environments.
 
@@ -100,14 +100,14 @@ npm run docker:rebuild       # Stop and rebuild all images without cache
 
 ## Individual Services
 
-### Backend
+### Backend Service
 
 ```bash
 npm run backend              # Start only backend and database
 npm run backend:fresh        # Rebuild and start backend with database
 ```
 
-### Frontend
+### Frontend Service
 
 ```bash
 npm run frontend             # Start only frontend
