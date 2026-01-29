@@ -1,15 +1,35 @@
 # GreenRoots
 
-GreenRoots is an e-commerce platform dedicated to global reforestation. It connects users with tree-planting projects, allowing them to purchase trees, track their growth, and contribute to a greener planet.
+GreenRoots is a premium, high-fidelity e-commerce platform dedicated to global reforestation. Our mission is to connect individuals and organizations with impactful tree-planting projects worldwide, making it easy to foster biodiversity and fight climate change—one tree at a time.
+
+## 🌿 About the Project
+
+Designed with sustainable web design in mind, GreenRoots offers a unique, tactile user experience. We emphasize clarity, transparency, and the beauty of nature through curated visual effects like analog dithering and continent-specific color theming.
+
+### Key Features
+
+* **Global Catalog**: Browse reforestation projects across five continents.
+* **Continent-Specific Theming**: Dynamic UI colors and image filters that adapt based on the project location.
+* **Artisanal Aesthetic**: High-fidelity retro design featuring dithered images and a warm, organic color palette.
+* **Seamless Checkout**: Integrated with Stripe for secure, fast tree sponsorships.
+* **Dashboard Tracking**: Manage your trees and track the progress of the reforestation projects you support.
+
+## 🛠 Technical Stack
+
+* **Frontend**: React Router (v7), Vite, Vanilla CSS.
+* **Backend**: Node.js, Express.
+* **Database**: PostgreSQL.
+* **Integrations**: Stripe (Payments), SMTP (Emails).
+* **Infrastructure**: Docker, Nginx, Traefik, GitHub Actions (CI/CD).
 
 ## Architecture
 
 ```mermaid
 graph TD
-    User[User] -->|HTTPS| Nginx[Nginx Reverse Proxy]
-    Nginx -->|Port 3000| Front["Frontend @front (React Router/Vite)"]
-    Nginx -->|Port 3001| Back["Backend @back (Express)"]
-    Front -->|API Calls| Back
+    User[User] -->|HTTPS| Traefik[Traefik Edge Router]
+    Traefik -->|Routing| Front["Frontend @front (React Router/Vite)"]
+    Traefik -->|Routing| Back["Backend @back (Express)"]
+    Front -->|API Calls| Traefik
     Back -->|Queries| DB[(PostgreSQL)]
     Back -->|Payments| Stripe[Stripe API]
     Back -->|Emails| SMTP[SMTP Server]
@@ -19,10 +39,10 @@ graph TD
 
 ## Workflows
 
-- **PR Checks**: Runs linting, type-checking, and unit tests on every Pull Request.
-- **E2E Tests**: Runs Playwright end-to-end tests nightly and on `master` pushes.
-- **Release**: Automates versioning and release notes creation on `master` pushes.
-- **Deploy**: Deploys to the production VPS on `master` pushes.
+* **PR Checks**: Runs linting, type-checking, and unit tests on every Pull Request.
+* **E2E Tests**: Runs Playwright end-to-end tests nightly and on `master` pushes.
+* **Release**: Automates versioning and release notes creation on `master` pushes.
+* **Deploy**: Deploys to the production VPS on `master` pushes.
 
 ## Running Tests Locally
 
@@ -124,8 +144,8 @@ npm run shell:database       # Open shell in database container
 
 The project uses a multi-file approach:
 
-- `docker-compose.yml`: Shared base configuration
-- `docker-compose.dev.yml`: Overrides for development
-- `docker-compose.prod.yml`: Overrides for production
+* `docker-compose.yml`: Shared base configuration
+* `docker-compose.dev.yml`: Overrides for development
+* `docker-compose.prod.yml`: Overrides for production
 
 Commands automatically combine these files based on the targeted environment.
