@@ -85,8 +85,8 @@
     height: 100%;
     object-fit: cover;
     transition: transform var(--transition-slow);
-    filter: grayscale(100%) contrast(1.1);
-    /* Force grayscale */
+    filter: grayscale(100%) contrast(1.1) brightness(1.2);
+    /* Boost brightness */
 }
 
 /* Checkered Grain Effect */
@@ -118,7 +118,8 @@
     height: 100%;
     mix-blend-mode: multiply;
     /* Duotone effect */
-    opacity: 0.8;
+    opacity: 0.6;
+    /* Reduced opacity for lighter look */
     pointer-events: none;
     transition: background-color 0.3s ease;
 }

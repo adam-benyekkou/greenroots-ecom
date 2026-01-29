@@ -31,7 +31,8 @@
 	height: 100%;
 	object-fit: cover;
 	display: block;
-	filter: grayscale(100%) contrast(1.1);
+	filter: grayscale(100%) contrast(1.1) brightness(1.2);
+	/* Boost brightness */
 	transition: all 0.3s ease;
 }
 
@@ -45,7 +46,8 @@
 	height: 100%;
 	mix-blend-mode: multiply;
 	/* Creates the duotone effect */
-	opacity: 0.8;
+	opacity: 0.6;
+	/* Reduced styling for lighter look */
 	pointer-events: none;
 	transition: background-color 0.3s ease;
 }
