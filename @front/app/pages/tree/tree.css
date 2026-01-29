@@ -166,50 +166,37 @@
     margin-bottom: var(--spacing-lg);
 }
 
+/* Global Continent Colors for Title */
+.tree-title[data-continent="Europe"] {
+    color: var(--europe-color);
+}
+
+.tree-title[data-continent="Asia"] {
+    color: var(--asia-color);
+}
+
+.tree-title[data-continent="North America"] {
+    color: var(--north-america-color);
+}
+
+.tree-title[data-continent="South America"] {
+    color: var(--south-america-color);
+}
+
+.tree-title[data-continent="Africa"] {
+    color: var(--africa-color);
+}
+
+.tree-title[data-continent="Australia"] {
+    color: var(--australia-color);
+}
+
 .tree-title {
     font-size: 2.25rem;
     font-weight: 700;
-    color: var(--color-primary);
-    /* Couleur par défaut */
     margin: 0 0 var(--spacing-md) 0;
     line-height: 1.2;
-}
-
-/* Couleurs dynamiques selon le continent */
-.tree-title.continent-europe {
-    color: var(--europe-color, var(--color-primary));
-}
-
-.tree-title.continent-afrique {
-    color: var(--africa-color, var(--color-primary));
-}
-
-.tree-title.continent-asie {
-    color: var(--asia-color, var(--color-primary));
-}
-
-.tree-title.continent-amerique-du-sud {
-    color: var(--south-america-color, var(--color-primary));
-}
-
-.tree-title.continent-amérique-du-sud {
-    color: var(--south-america-color, var(--color-primary));
-}
-
-.tree-title.continent-amerique-du-nord {
-    color: var(--north-america-color, var(--color-primary));
-}
-
-.tree-title.continent-amérique-du-nord {
-    color: var(--north-america-color, var(--color-primary));
-}
-
-.tree-title.continent-australie {
-    color: var(--australia-color, var(--color-primary));
-}
-
-.tree-title.continent-default {
-    color: var(--color-primary);
+    transition: color 0.3s ease;
 }
 
 .tree-meta {
@@ -462,18 +449,87 @@
     font-weight: 500;
 }
 
-/* Image du projet */
+/* Image du projet - Retro Effect */
 .project-image-container {
+    position: relative;
     border-radius: var(--border-radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-lg);
+    aspect-ratio: 3/2;
 }
 
 .project-image {
     width: 100%;
-    height: auto;
-    aspect-ratio: 3/2;
+    height: 100%;
     object-fit: cover;
+    filter: grayscale(100%) contrast(1.1) brightness(1.2);
+    transition: all 0.3s ease;
+}
+
+.project-image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(var(--light-grey) 15%, transparent 16%),
+        radial-gradient(var(--light-grey) 15%, transparent 16%);
+    background-size: 4px 4px;
+    background-position: 0 0, 2px 2px;
+    opacity: 0.3;
+    z-index: 2;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+}
+
+.project-image-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: multiply;
+    opacity: 0.6;
+    pointer-events: none;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+/* Hover reveal for project image */
+.project-image-container:hover .project-image {
+    filter: grayscale(0%) contrast(1);
+    transform: scale(1.02);
+}
+
+.project-image-container:hover::after {
+    opacity: 0;
+}
+
+/* Continent Tint Mappings for Project Image */
+.project-image-container[data-continent="Europe"]::after {
+    background-color: var(--europe-color);
+}
+
+.project-image-container[data-continent="Asia"]::after {
+    background-color: var(--asia-color);
+}
+
+.project-image-container[data-continent="North America"]::after {
+    background-color: var(--north-america-color);
+}
+
+.project-image-container[data-continent="South America"]::after {
+    background-color: var(--south-america-color);
+}
+
+.project-image-container[data-continent="Africa"]::after {
+    background-color: var(--africa-color);
+}
+
+.project-image-container[data-continent="Australia"]::after {
+    background-color: var(--australia-color);
 }
 
 /* ===================================

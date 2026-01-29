@@ -121,7 +121,8 @@ export default function Tree(props: Route.ComponentProps) {
 				<div className="tree-details">
 					<div className="tree-header-info">
 						<h1
-							className={`tree-title continent-${project?.localization?.continent?.toLowerCase()?.replace(/\s+/g, "-")?.replace("é", "e") || "default"}`}
+							className="tree-title"
+							data-continent={continent}
 						>
 							{tree.name}
 						</h1>
@@ -221,7 +222,7 @@ export default function Tree(props: Route.ComponentProps) {
 							</div>
 						</div>
 
-						<div className="project-image-container">
+						<div className="project-image-container" data-continent={continent}>
 							<img
 								src={project.image}
 								alt={`Projet ${project.name}`}
