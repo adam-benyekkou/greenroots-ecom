@@ -75,7 +75,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 					<img src={homePageSeed} alt="seed growing in the forest" />
 					<div className="sub-hero-text-content">
 						<p>All over the world, our projects are revitalizing the planet!</p>
-						<h3>make our planet green again!</h3>
+						<h3>Make Our Planet Green Again!</h3>
 						<Link to="/catalog" className="link-button-desktop">
 							See all our trees
 						</Link>
